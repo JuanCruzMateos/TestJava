@@ -1,4 +1,4 @@
-package test.testMedico;
+package test.medicos;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import medicos.Clinico;
 import medicos.IMedico;
 import medicos.Pediatra;
 
-public class TestEspecialidad {
+public class EspecialidadTest {
 	
 	@Test
 	public void testCreacionCirujano() {

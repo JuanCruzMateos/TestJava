@@ -1,4 +1,4 @@
-package test.testMedico;
+package test.medicos;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import excepciones.PosgradoInvalidoException;
 import medicos.IMedico;
 import medicos.MedicoFactory;
 
-public class TestFactory {
+public class FactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
