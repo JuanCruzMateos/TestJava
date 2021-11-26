@@ -29,21 +29,23 @@ public class TestHabPrivada {
 	public void testCalcularValorInternacion1() {
 		int dias = 1;
 		double costo = habitacion.calcularValorInternacion(dias);
-		Assert.assertEquals("El costo de la habitacion debe ser "+costoHabitacion,costoHabitacion, costo, 0);
+		Assert.assertEquals("El costo de la habitacion debe ser " + costoHabitacion, costoHabitacion, costo, 0);
 	}
 
 	@Test
 	public void testCalcularValorInternacion2() {
 		int dias = 2;
 		double costo = habitacion.calcularValorInternacion(dias);
-		Assert.assertEquals("El costo de la habitacion debe ser "+costoHabitacion*1.3*dias,dias * 1.3 * costoHabitacion, costo, 0);
+		Assert.assertEquals("El costo de la habitacion debe ser " + costoHabitacion * 1.3 * dias,
+				dias * 1.3 * costoHabitacion, costo, 0);
 	}
 
 	@Test
 	public void testCalcularValorInternacion3() {
 		int dias = 6;
 		double costo = habitacion.calcularValorInternacion(dias);
-		Assert.assertEquals("El costo de la habitacion debe ser "+costoHabitacion*2*dias,dias * 2 * costoHabitacion, costo, 0);
+		Assert.assertEquals("El costo de la habitacion debe ser " + costoHabitacion * 2 * dias,
+				dias * 2 * costoHabitacion, costo, 0);
 	}
 
 	@Test

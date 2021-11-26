@@ -31,7 +31,8 @@ public class TestSalaTerapiaIntensiva {
 	public void testCalcularValorInternacion() {
 		int dias = 4;
 		double costo = habitacion.calcularValorInternacion(dias);
-		Assert.assertEquals("El costo de la habitacion debe ser "+Math.pow(this.costoHabitacion, dias),Math.pow(this.costoHabitacion, dias), costo, 0);
+		Assert.assertEquals("El costo de la habitacion debe ser " + Math.pow(this.costoHabitacion, dias),
+				Math.pow(this.costoHabitacion, dias), costo, 0);
 	}
 
 	@Test
@@ -51,7 +52,8 @@ public class TestSalaTerapiaIntensiva {
 	@Test
 	public void testEliminarPacienteExitoso() {
 		escenarioLleno.getHabitacion().eliminaPaciente(paciente);
-		Assert.assertEquals("Se debe haber eliminado el paciente de la habitacion privada", null,paciente.getHabitacion());
+		Assert.assertEquals("Se debe haber eliminado el paciente de la habitacion privada", null,
+				paciente.getHabitacion());
 	}
 
 	@Test

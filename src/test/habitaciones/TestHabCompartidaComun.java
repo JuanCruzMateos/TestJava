@@ -30,7 +30,8 @@ public class TestHabCompartidaComun {
 	public void testCalcularValorInternacion() {
 		int dias = 4;
 		double costo = habitacion.calcularValorInternacion(dias);
-		Assert.assertEquals("El costo de la habitacion debe ser "+dias*costoHabitacion,dias*costoHabitacion, costo, 0);
+		Assert.assertEquals("El costo de la habitacion debe ser " + dias * costoHabitacion, dias * costoHabitacion,
+				costo, 0);
 	}
 
 	@Test
@@ -50,7 +51,8 @@ public class TestHabCompartidaComun {
 	@Test
 	public void testEliminarPacienteExitoso() {
 		escenarioLleno.getHabitacion().eliminaPaciente(paciente);
-		Assert.assertEquals("Se debe haber eliminado el paciente de la habitacion privada", null,paciente.getHabitacion());
+		Assert.assertEquals("Se debe haber eliminado el paciente de la habitacion privada", null,
+				paciente.getHabitacion());
 	}
 
 	@Test
