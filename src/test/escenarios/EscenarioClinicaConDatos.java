@@ -62,6 +62,7 @@ public class EscenarioClinicaConDatos {
 			this.clinica.ingresoPaciente(p5);
 			this.clinica.ingresoPaciente(p6);
 			this.clinica.ingresoPaciente(this.paciente);
+			
 		} catch (TipoPacienteInvalidoException e) {
 			//
 		} catch (PacienteRepetidoException e) {

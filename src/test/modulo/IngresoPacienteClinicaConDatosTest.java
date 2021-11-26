@@ -55,24 +55,8 @@ public class IngresoPacienteClinicaConDatosTest {
 	}
 
 	@Test
-	public void ingresoPacienteTest() {
-		try {
-			IPaciente joven = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
-					"Mar del Plata", 9, "Joven");
-			this.condatos.getClinica().ingresoPaciente(joven);
-
-			if (!this.condatos.getClinica().getPatio().contains(joven)
-					&& this.condatos.getClinica().getSalaDeEsperaPrivada() != joven) {
-				fail("No se ingreso correctamente el paciente a la clinica");
-			}
-
-		} catch (TipoPacienteInvalidoException e) {
-			fail("No deberian ocurrir excepciones: El paciente es valido");
-		} catch (PacienteRepetidoException e) {
-			fail("No deberian ocurrir excepciones: El paciente a ingresar es nuevo, no repetido");
-		} catch (PacienteYaIngresadoException e) {
-			fail("No deberian ocurrir excepciones: El paciente a ingresar es nuevo, no se lo ha ingresado antes");
-		}
+	public void ingresoPacienteYaIngresasoTest() {
+		// TODO -> como lanzo esa excepcion
 	}
 
 }
