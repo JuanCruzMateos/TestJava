@@ -1,4 +1,4 @@
-package test.Clinica;
+package test.clinica;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import modulo.Clinica;
 import test.escenarios.ClinicaConMedicos;
 
 public class ClinicaConMedicosTest {
-	
+
 	@Before
 	public void setUp() {
 		ClinicaConMedicos.setUp();
@@ -28,11 +28,12 @@ public class ClinicaConMedicosTest {
 		} catch (MedicoRepetidoException e) {
 		}
 	}
-	
+
 	@Test
 	public void testAgregarMedicoNuevo() {
 		try {
-			IMedico m = MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano", "Permanente", "Magister", 100);
+			IMedico m = MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano",
+					"Permanente", "Magister", 100);
 			Clinica.getInstance().agregaMedico(m);
 			Assert.assertTrue("El medico no fue agregado normalmente", Clinica.getInstance().getMedicos().contains(m));
 		} catch (MedicoRepetidoException e) {
@@ -45,11 +46,12 @@ public class ClinicaConMedicosTest {
 			Assert.fail("No deberia lanzarse la excepcion especialidad invalida");
 		}
 	}
-	
+
 	@Test
 	public void testEliminaMedico() {
 		Clinica.getInstance().eliminaMedico(ClinicaConMedicos.m);
-		Assert.assertFalse("El medico deberia haber sido eliminado", Clinica.getInstance().getMedicos().contains(ClinicaConMedicos.m));
+		Assert.assertFalse("El medico deberia haber sido eliminado",
+				Clinica.getInstance().getMedicos().contains(ClinicaConMedicos.m));
 	}
 
 }

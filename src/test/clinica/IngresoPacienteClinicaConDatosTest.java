@@ -1,4 +1,4 @@
-package test.modulo;
+package test.clinica;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +56,14 @@ public class IngresoPacienteClinicaConDatosTest {
 
 	@Test
 	public void ingresoPacienteYaIngresasoTest() {
-		// TODO -> como lanzo esa excepcion
+		try {
+			this.condatos.getClinica().ingresoPaciente(this.condatos.getPaciente());
+			fail("Deberia lanzarse una excepcion de tipo PacienteRepetidoException");
+		} catch (PacienteRepetidoException e) {
+			//
+		} catch (PacienteYaIngresadoException e) {
+			fail("No deberian ocurrir excepciones: El paciente a ingresar es nuevo, no se lo ha ingresado antes");
+		}
 	}
 
 }

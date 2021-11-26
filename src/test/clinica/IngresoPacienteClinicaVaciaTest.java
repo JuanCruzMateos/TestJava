@@ -1,4 +1,4 @@
-package test.modulo;
+package test.clinica;
 
 import static org.junit.Assert.*;
 
