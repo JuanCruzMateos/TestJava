@@ -16,6 +16,18 @@ public interface IMedico extends Serializable {
 	double calculaHonorario();
 
 	String getNombre();
+	
+	String getDNI();
+	
+	String getDomicilio();
+	
+	String getCiudad();
+	
+	String getTelefono();
+	
+	int getNumMatricula();
+	
+	double getHonorarioBase();
 
 	boolean equals(Object obj);
 

@@ -63,4 +63,43 @@ public abstract class DecoratorPosgrado implements IMedico {
 		return encapsulado.toString();
 	}
 
+
+	@Override
+	public String getDNI() {
+		return this.encapsulado.getDNI();
+	}
+
+
+	@Override
+	public String getDomicilio() {
+		return this.encapsulado.getDomicilio();
+	}
+
+
+	@Override
+	public String getCiudad() {
+		return this.encapsulado.getCiudad();
+	}
+
+
+	@Override
+	public String getTelefono() {
+		return this.encapsulado.getTelefono();
+	}
+
+
+	@Override
+	public int getNumMatricula() {
+		return this.encapsulado.getNumMatricula();
+	}
+
+
+	@Override
+	public double getHonorarioBase() {
+		return this.encapsulado.getHonorarioBase();
+	}
+
+
+	
+
 }

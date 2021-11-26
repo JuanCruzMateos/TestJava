@@ -50,7 +50,8 @@ public abstract class Medico implements IMedico, Serializable {
 		return this.nomAp;
 	}
 
-	public String getDni() {
+
+	public String getDNI() {
 		return dni;
 	}
 

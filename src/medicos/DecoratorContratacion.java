@@ -63,5 +63,43 @@ public abstract class DecoratorContratacion implements IMedico {
 			return false;
 		return true;
 	}
+	
+
+	@Override
+	public String getDNI() {
+		return this.encapsuladobis.getDNI();
+	}
+
+
+	@Override
+	public String getDomicilio() {
+		return this.encapsuladobis.getDomicilio();
+	}
+
+
+	@Override
+	public String getCiudad() {
+		return this.encapsuladobis.getCiudad();
+	}
+
+
+	@Override
+	public String getTelefono() {
+		return this.encapsuladobis.getTelefono();
+	}
+
+
+	@Override
+	public int getNumMatricula() {
+		return this.encapsuladobis.getNumMatricula();
+	}
+
+
+	@Override
+	public double getHonorarioBase() {
+		return this.encapsuladobis.getHonorarioBase();
+	}
+	
+	
 
 }
