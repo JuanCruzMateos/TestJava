@@ -11,90 +11,70 @@ import pacientes.LineaFactura;
 
 /**
  * @author usuario <br>
- * clase que nos permite crear un objeto para transferir los datos de otro objeto que no puede persistirse<br>
- * Se aplica el Patron DTO <br>
- * la clase implementa Serializable para poder persistir de manera binaria
+ *         clase que nos permite crear un objeto para transferir los datos de
+ *         otro objeto que no puede persistirse<br>
+ *         Se aplica el Patron DTO <br>
+ *         la clase implementa Serializable para poder persistir de manera
+ *         binaria
  */
-public class ClinicaDTO implements Serializable{
+public class ClinicaDTO implements Serializable {
 	private String nombre, direccion, telefono, ciudad;
 	private ArrayList<IMedico> medicos;
 	private ArrayList<IPaciente> hPacientes;
 	private ArrayList<IHabitacion> habitaciones;
 	private ArrayList<IPaciente> listaDeEspera;
 	ArrayList<IPaciente> listaDeAtencion;
-	IPaciente salaDeEsperaPrivada = null; 
+	IPaciente salaDeEsperaPrivada = null;
 	ArrayList<IPaciente> patio;
-	private ArrayList<LineaFactura>lineasFacturas;
-	private ArrayList<LineaFactura>lineasReporte;
+	private ArrayList<LineaFactura> lineasFacturas;
+	private ArrayList<LineaFactura> lineasReporte;
 	private int nroOrden = 1, turno = 1, nroFactura = 1;
-	
-	
+
 	/**
 	 * Constructor de clase sin parametros para poder realizar una codificacion XML
 	 */
-	public ClinicaDTO() {}
+	public ClinicaDTO() {
+	}
 
-	
-	
 	public int getNroOrden() {
 		return nroOrden;
 	}
-
-
 
 	public void setNroOrden(int nroOrden) {
 		this.nroOrden = nroOrden;
 	}
 
-
-
 	public int getTurno() {
 		return turno;
 	}
-
-
 
 	public void setTurno(int turno) {
 		this.turno = turno;
 	}
 
-
-
 	public int getNroFactura() {
 		return nroFactura;
 	}
-
-
 
 	public void setNroFactura(int nroFactura) {
 		this.nroFactura = nroFactura;
 	}
 
-
-
 	public ArrayList<IPaciente> getPatio() {
 		return patio;
 	}
-
-
 
 	public void setPatio(ArrayList<IPaciente> patio) {
 		this.patio = patio;
 	}
 
-
-
 	public ArrayList<LineaFactura> getLineasFacturas() {
 		return lineasFacturas;
 	}
 
-
-
 	public void setLineasFacturas(ArrayList<LineaFactura> lineasFacturas) {
 		this.lineasFacturas = lineasFacturas;
 	}
-
-
 
 	public ArrayList<IPaciente> getListaDeEspera() {
 		return listaDeEspera;
@@ -176,19 +156,12 @@ public class ClinicaDTO implements Serializable{
 		this.habitaciones = habitaciones;
 	}
 
-
-
 	public ArrayList<LineaFactura> getLineasReporte() {
 		return lineasReporte;
 	}
 
-
-
 	public void setLineasReporte(ArrayList<LineaFactura> lineasReporte) {
 		this.lineasReporte = lineasReporte;
 	}
-
-
-
 
 }

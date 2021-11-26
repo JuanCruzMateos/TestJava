@@ -58,7 +58,8 @@ public class HabPrivada extends Habitacion {
 	}
 
 	/**
-	 * metodo void en donde se elimina a un paciente de la habitacion compartida <br>
+	 * metodo void en donde se elimina a un paciente de la habitacion compartida
+	 * <br>
 	 */
 	@Override
 	public void eliminaPaciente(IPaciente paciente) {

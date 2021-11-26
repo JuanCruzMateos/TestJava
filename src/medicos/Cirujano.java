@@ -1,12 +1,9 @@
 package medicos;
 
 /**
- * @author usuario
- * Subclase cirujano que se extiende de la clase medico <br>
+ * @author usuario Subclase cirujano que se extiende de la clase medico <br>
  */
 public class Cirujano extends Medico {
-
-
 
 	public Cirujano(String nomAp, String dni, String domicilio, String ciudad, String telefono, int numMatricula,
 			double honorario) {
@@ -16,13 +13,8 @@ public class Cirujano extends Medico {
 
 	@Override
 	public double calculaHonorario() {
-		
-		return (honorarioBase*1.1);
+
+		return (honorarioBase * 1.1);
 	}
-
-
-
-
-
 
 }

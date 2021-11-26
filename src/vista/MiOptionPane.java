@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 public class MiOptionPane implements InterfazOptionPanel {
 
 	public MiOptionPane() {
-        super();
-    }
-	
+		super();
+	}
+
 	public void ShowMessage(Component parent, String mensaje) {
-        JOptionPane.showMessageDialog(parent, mensaje);
-    }
+		JOptionPane.showMessageDialog(parent, mensaje);
+	}
 }

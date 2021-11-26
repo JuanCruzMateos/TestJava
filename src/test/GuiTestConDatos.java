@@ -23,55 +23,45 @@ import vista.MiOptionPane;
 import vista.Ventana;
 import java.awt.Point;
 
-
 public class GuiTestConDatos {
 
-	 Robot robot;
-	 Controlador controlador;
-	 MiOptionPane op = new MiOptionPane();
-	 Ventana vista = new Ventana();
-	
-	
-	 
-	 public GuiTestConDatos()
-    {
-        try
-        {
-            robot = new Robot();
-        } catch (AWTException e)
-        {
-        }
-    }
-	
-	
+	Robot robot;
+	Controlador controlador;
+	MiOptionPane op = new MiOptionPane();
+	Ventana vista = new Ventana();
+
+	public GuiTestConDatos() {
+		try {
+			robot = new Robot();
+		} catch (AWTException e) {
+		}
+	}
+
 	@Before
-    public void setUp() throws Exception
-    {
-		//Ventana vista = new Ventana();
-		controlador = new Controlador(vista);		
-		
-        controlador.setOptionpane(op);
-        
-    }
+	public void setUp() throws Exception {
+		// Ventana vista = new Ventana();
+		controlador = new Controlador(vista);
+
+		controlador.setOptionpane(op);
+
+	}
 
 	@After
-    public void tearDown() throws Exception
-    {
-        //Ventana ventana = (Ventana) controlador.getVentana();
-        vista.setVisible(true);
-    }
+	public void tearDown() throws Exception {
+		// Ventana ventana = (Ventana) controlador.getVentana();
+		vista.setVisible(true);
+	}
 
 	@Test
-    public void testEliminaOK()
-    {
-        robot.delay(TestUtils.getDelay());
-        JList pacientes = (JList) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "ListaPacientes");
-        int numberOfElements = pacientes.getModel().getSize();
-        
-        IPaciente pac = (IPaciente) pacientes.getModel().getElementAt(4);
-        System.out.println(pac.getNombre());
-        Point indexToLocation = pacientes.indexToLocation(1);
-        System.out.println(indexToLocation);
+	public void testEliminaOK() {
+		robot.delay(TestUtils.getDelay());
+		JList pacientes = (JList) TestUtils.getComponentForName((Ventana) controlador.getVentana(), "ListaPacientes");
+		int numberOfElements = pacientes.getModel().getSize();
+
+		IPaciente pac = (IPaciente) pacientes.getModel().getElementAt(4);
+		System.out.println(pac.getNombre());
+		Point indexToLocation = pacientes.indexToLocation(1);
+		System.out.println(indexToLocation);
 //        
 //        if (numberOfElements!=0)
 //        {
@@ -80,8 +70,8 @@ public class GuiTestConDatos {
 //        	IPaciente mypaciente = myVentana.getPacienteSeleccionado();
 //        	System.out.println(mypaciente.getNombre());
 //        }
-        
-        //obtengo las referencias a los componentes necesarios
+
+		// obtengo las referencias a los componentes necesarios
 //        JTextField nombre = (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtNombreLogin");
 //        JTextField contrasena =
 //            (JTextField) TestUtils.getComponentForName(controlador.getVentana(), "jtContrasenaLogin");
@@ -96,9 +86,8 @@ public class GuiTestConDatos {
 //        //verifico los resultados
 //        Assert.assertEquals("Deberia coincidir el nombre de usuario con el nombre ingresado", "juan",
 //                            controlador.getUsuarioactual().getNombre());
-//        Assert.assertEquals("Memnsaje incorrecto, debería decir"+Mensajes.LOGIN_OK.getValor(),Mensajes.LOGIN_OK.getValor(),op.getMensaje());
+//        Assert.assertEquals("Memnsaje incorrecto, deberï¿½a decir"+Mensajes.LOGIN_OK.getValor(),Mensajes.LOGIN_OK.getValor(),op.getMensaje());
 //        
-    }
-	
-	
+	}
+
 }

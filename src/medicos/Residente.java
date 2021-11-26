@@ -1,8 +1,9 @@
 package medicos;
 
 /**
- * @author usuario
- * Clase residente que se extiende del decorator de contratacion.Residente es una forma de contratacion que afecta al honorario del medico <br>
+ * @author usuario Clase residente que se extiende del decorator de
+ *         contratacion.Residente es una forma de contratacion que afecta al
+ *         honorario del medico <br>
  */
 public class Residente extends DecoratorContratacion {
 
@@ -12,9 +13,7 @@ public class Residente extends DecoratorContratacion {
 
 	@Override
 	public double calculaHonorario() {
-		return (this.encapsuladobis.calculaHonorario()*1.05);			
+		return (this.encapsuladobis.calculaHonorario() * 1.05);
 	}
-
-
 
 }

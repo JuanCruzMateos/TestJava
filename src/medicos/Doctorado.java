@@ -1,8 +1,9 @@
 package medicos;
 
 /**
- * @author usuario
- * Clase doctorado que se extiende del decorator posgrado (significando, doctorado, un tipo de contratacion para los medicos)<br>
+ * @author usuario Clase doctorado que se extiende del decorator posgrado
+ *         (significando, doctorado, un tipo de contratacion para los
+ *         medicos)<br>
  */
 public class Doctorado extends DecoratorPosgrado {
 
@@ -12,11 +13,8 @@ public class Doctorado extends DecoratorPosgrado {
 
 	@Override
 	public double calculaHonorario() {
-		return (this.encapsulado.calculaHonorario()*1.1);
-		
+		return (this.encapsulado.calculaHonorario() * 1.1);
+
 	}
 
-	
 }
-
-	

@@ -1,8 +1,8 @@
 package pacientes;
 
 /**
- * @author 
- * Clase mayor que se extiende la superclase Paciente e implementa la interfaz IPaciente
+ * @author Clase mayor que se extiende la superclase Paciente e implementa la
+ *         interfaz IPaciente
  */
 public class Mayor extends Paciente {
 
@@ -16,7 +16,7 @@ public class Mayor extends Paciente {
 	}
 
 	@Override
-	public boolean beatsNiño() {
+	public boolean beatsNiÃ±o() {
 		return false;
 	}
 
@@ -29,5 +29,5 @@ public class Mayor extends Paciente {
 	public boolean beatsMayor() {
 		return true;
 	}
-	
+
 }

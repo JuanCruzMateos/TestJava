@@ -5,39 +5,39 @@ import java.util.GregorianCalendar;
 import pacientes.IPaciente;
 
 /**
- * @author usuario
- * Clase abstracta decoratorcontratacion en donde se encapsula("decora") a un IMedico para evitar una posterior explosion de clases <br>
+ * @author usuario Clase abstracta decoratorcontratacion en donde se
+ *         encapsula("decora") a un IMedico para evitar una posterior explosion
+ *         de clases <br>
  */
-public abstract class DecoratorContratacion implements IMedico{
+public abstract class DecoratorContratacion implements IMedico {
 
-   
-    protected IMedico encapsuladobis;
-	
+	protected IMedico encapsuladobis;
 
-	/**Constructor de DecoratorContratacion en donde se recibe un IMedico como parametro <br>
-	 * @param encapsuladobis : parametro tipo IMedico, representa un encapsulado del medico afiliado al patron decorator<br>
-	 * <b> Pre : </b> El encapsulado debe de ser distinto de NULL<br>
-	 * <b> Post : </b> Al encapsulado de este decorator se le asigna correctamente el encapsulado del parametro<br>
+	/**
+	 * Constructor de DecoratorContratacion en donde se recibe un IMedico como
+	 * parametro <br>
+	 * 
+	 * @param encapsuladobis : parametro tipo IMedico, representa un encapsulado del
+	 *                       medico afiliado al patron decorator<br>
+	 *                       <b> Pre : </b> El encapsulado debe de ser distinto de
+	 *                       NULL<br>
+	 *                       <b> Post : </b> Al encapsulado de este decorator se le
+	 *                       asigna correctamente el encapsulado del parametro<br>
 	 * 
 	 */
 	public DecoratorContratacion(IMedico encapsuladobis) {
 		this.encapsuladobis = encapsuladobis;
 	}
-	
 
 	@Override
 	public String getNombre() {
 		return this.encapsuladobis.getNombre();
 	}
 
-	
-	
-
 	@Override
 	public String toString() {
 		return encapsuladobis.toString();
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -46,7 +46,6 @@ public abstract class DecoratorContratacion implements IMedico{
 		result = prime * result + ((encapsuladobis == null) ? 0 : encapsuladobis.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -64,19 +63,5 @@ public abstract class DecoratorContratacion implements IMedico{
 			return false;
 		return true;
 	}
-	
-	
-
-
-
-
-
-
-
-	
-	
-
-	
-	
 
 }

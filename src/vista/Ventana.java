@@ -99,7 +99,7 @@ public class Ventana extends JFrame implements IVista {
 	private JPanel panelContenedorTipoPersona;
 	private JTextField txtFieldCiudad;
 	private JTextField txtFieldHonorarioBase;
-	private JRadioButton RadioBTNNiño;
+	private JRadioButton RadioBTNNiÃ±o;
 	private JRadioButton RadioBTNJoven;
 	private JRadioButton RadioBTNMayor;
 	private JPanel panelContenedorAgElim;
@@ -138,7 +138,7 @@ public class Ventana extends JFrame implements IVista {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventana frame = new Ventana();					
+					Ventana frame = new Ventana();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -147,13 +147,11 @@ public class Ventana extends JFrame implements IVista {
 		});
 	}
 
-
 	/**
 	 * Create the frame.
 	 */
 	public Ventana() {
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 925, 684);
 		this.contentPane = new JPanel();
@@ -322,9 +320,9 @@ public class Ventana extends JFrame implements IVista {
 		this.panel_2.add(this.RadioBTNMayor);
 		buttonGroup_4.add(this.RadioBTNMayor);
 
-		this.RadioBTNNiño = new JRadioButton("Niño");
-		this.panel_2.add(this.RadioBTNNiño);
-		buttonGroup_4.add(this.RadioBTNNiño);
+		this.RadioBTNNiÃ±o = new JRadioButton("NiÃ±o");
+		this.panel_2.add(this.RadioBTNNiÃ±o);
+		buttonGroup_4.add(this.RadioBTNNiÃ±o);
 
 		this.PanelMedioAnteUlt = new JPanel();
 		this.panelCentro.add(this.PanelMedioAnteUlt);
@@ -461,9 +459,8 @@ public class Ventana extends JFrame implements IVista {
 		this.ListaMedicos.setModel(modeloListaMedicos);
 		this.ListaPacientes.setModel(modeloListaPacientes);
 		this.ListaHabitaciones.setModel(modeloListaHabitaciones);
-		
-		
-		//seteo nombres
+
+		// seteo nombres
 		this.RadioBTNMedico.setName("RadioBTNMedico");
 		this.RadioBTNPaciente.setName("RadioBTNPaciente");
 		this.txtFieldNombreAp.setName("txtFieldNombreAp");
@@ -482,7 +479,7 @@ public class Ventana extends JFrame implements IVista {
 		this.RadioButtonPermanente.setName("RadioButtonPermanente");
 		this.RadioBTNJoven.setName("RadioBTNJoven");
 		this.RadioBTNMayor.setName("RadioBTNMayor");
-		this.RadioBTNNiño.setName("RadioBTNNiño");
+		this.RadioBTNNiÃ±o.setName("RadioBTNNiï¿½o");
 		this.btnAgregar.setName("btnAgregar");
 		this.btnEliminar.setName("btnEliminar");
 		this.btnLlamarPaciente.setName("");
@@ -733,8 +730,10 @@ public class Ventana extends JFrame implements IVista {
 	 * metodo que obtiene la matricula de un medico ingresada en la interfaz de
 	 * usuario y la retorna en un int
 	 * 
-	 * @throws MatriculaInvalidaException : se produce cuando la cadena es nula o no tiene el formato valido para este campo
-	 * @throws HistoriaInvalidaException : se produce cuando la cadena es nula o no tiene el formato valido para este campo
+	 * @throws MatriculaInvalidaException : se produce cuando la cadena es nula o no
+	 *                                    tiene el formato valido para este campo
+	 * @throws HistoriaInvalidaException  : se produce cuando la cadena es nula o no
+	 *                                    tiene el formato valido para este campo
 	 */
 	@Override
 	public int getMatriculaNuevo() throws MatriculaInvalidaException, HistoriaInvalidaException {
@@ -755,8 +754,7 @@ public class Ventana extends JFrame implements IVista {
 			} else
 				return Integer.parseInt(this.txtFieldHistoriamatricula.getText());
 
-		} 
-		else {
+		} else {
 			if (this.RadioBTNMedico.isSelected())
 				throw new MatriculaInvalidaException();
 			else
@@ -784,7 +782,7 @@ public class Ventana extends JFrame implements IVista {
 	@Override
 	public String getRangoEtario() throws SeleccionIncorrectaException {
 		String rta = null;
-		if (this.RadioBTNNiño.isSelected())
+		if (this.RadioBTNNiÃ±o.isSelected())
 			rta = "Nino";
 		else if (this.RadioBTNJoven.isSelected())
 			rta = "Joven";
@@ -920,7 +918,7 @@ public class Ventana extends JFrame implements IVista {
 		this.ListaMedicos.clearSelection();
 		this.RadioBTNJoven.setSelected(false);
 		this.RadioBTNMayor.setSelected(false);
-		this.RadioBTNNiño.setSelected(false);
+		this.RadioBTNNiÃ±o.setSelected(false);
 		this.RadioBTNMedico.setSelected(false);
 		this.RadioBTNPaciente.setSelected(false);
 		this.RadioButtonCirujano.setSelected(false);
@@ -961,7 +959,7 @@ public class Ventana extends JFrame implements IVista {
 	public void deseleccionaBotonesMedico() {
 		this.RadioBTNJoven.setEnabled(true);
 		this.RadioBTNMayor.setEnabled(true);
-		this.RadioBTNNiño.setEnabled(true);
+		this.RadioBTNNiÃ±o.setEnabled(true);
 		this.RadioButtonCirujano.setEnabled(false);
 		this.RadioButtonClinico.setEnabled(false);
 		this.RadioButtonMagister.setEnabled(false);
@@ -981,7 +979,7 @@ public class Ventana extends JFrame implements IVista {
 	public void deseleccionaBotonesPaciente() {
 		this.RadioBTNJoven.setEnabled(false);
 		this.RadioBTNMayor.setEnabled(false);
-		this.RadioBTNNiño.setEnabled(false);
+		this.RadioBTNNiÃ±o.setEnabled(false);
 		this.RadioButtonCirujano.setEnabled(true);
 		this.RadioButtonClinico.setEnabled(true);
 		this.RadioButtonMagister.setEnabled(true);
@@ -1001,7 +999,7 @@ public class Ventana extends JFrame implements IVista {
 	public void deseleccionarBotones() {
 		this.RadioBTNJoven.setEnabled(false);
 		this.RadioBTNMayor.setEnabled(false);
-		this.RadioBTNNiño.setEnabled(false);
+		this.RadioBTNNiÃ±o.setEnabled(false);
 		this.RadioButtonCirujano.setEnabled(false);
 		this.RadioButtonClinico.setEnabled(false);
 		this.RadioButtonMagister.setEnabled(false);
@@ -1079,7 +1077,6 @@ public class Ventana extends JFrame implements IVista {
 		return rta;
 	}
 
-	
 }
 
 /*----------------------------------------------------------------------------*/

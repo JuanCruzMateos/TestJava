@@ -1,14 +1,11 @@
 package pacientes;
 
-
-
 /**
- * @author 
- * Clase joven que se extiende de la clase paciente que implementa la interfaz IPaciente
+ * @author Clase joven que se extiende de la clase paciente que implementa la
+ *         interfaz IPaciente
  */
-public class Joven extends Paciente{
+public class Joven extends Paciente {
 
-	
 	public Joven(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria) {
 		super(dni, nomAp, telefono, domicilio, ciudad, numHistoria);
 	}
@@ -19,7 +16,7 @@ public class Joven extends Paciente{
 	}
 
 	@Override
-	public boolean beatsNiño() {
+	public boolean beatsNiÃ±o() {
 		return true;
 	}
 
@@ -32,6 +29,5 @@ public class Joven extends Paciente{
 	public boolean beatsMayor() {
 		return false;
 	}
-
 
 }

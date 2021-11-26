@@ -1,8 +1,8 @@
 package pacientes;
 
 /**
- * @author 
- * Clase nino que se extiende la superclase Paciente e implementa la interfaz IPaciente
+ * @author Clase nino que se extiende la superclase Paciente e implementa la
+ *         interfaz IPaciente
  */
 public class Niño extends Paciente {
 
@@ -29,7 +29,5 @@ public class Niño extends Paciente {
 	public boolean beatsMayor() {
 		return true;
 	}
-
-
 
 }

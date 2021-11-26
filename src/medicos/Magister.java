@@ -1,8 +1,9 @@
 package medicos;
 
 /**
- * @author usuario
- * Clase Magister que se extiende de DecoratorPosgrado (significando, magister, un tipo de contratacion para los medicos) <br>
+ * @author usuario Clase Magister que se extiende de DecoratorPosgrado
+ *         (significando, magister, un tipo de contratacion para los medicos)
+ *         <br>
  */
 public class Magister extends DecoratorPosgrado {
 
@@ -12,9 +13,8 @@ public class Magister extends DecoratorPosgrado {
 
 	@Override
 	public double calculaHonorario() {
-		return (this.encapsulado.calculaHonorario()*1.05);
-		
-	}
+		return (this.encapsulado.calculaHonorario() * 1.05);
 
+	}
 
 }

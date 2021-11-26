@@ -1,7 +1,6 @@
 package habitaciones;
 
-public class HabCompartidaComun extends HabCompartida
-{
+public class HabCompartidaComun extends HabCompartida {
 
 	public HabCompartidaComun(double costoAsignacion) {
 		super(costoAsignacion);
@@ -12,7 +11,5 @@ public class HabCompartidaComun extends HabCompartida
 	public String toString() {
 		return "HabCompartidaComun " + super.toString();
 	}
-	
-	
 
 }
