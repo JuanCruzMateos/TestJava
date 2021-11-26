@@ -1,7 +1,5 @@
 package test.clinica;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,9 +41,9 @@ public class ClinicaSinMedicosTest {
 
 	@Test
 	public void testEliminaMedico() {
+		int longitud = Clinica.getInstance().getMedicos().size();
 		Clinica.getInstance().eliminaMedico(ClinicaConMedicos.m);
-		Assert.assertFalse("El medico deberia haber sido eliminado",
-				Clinica.getInstance().getMedicos().contains(ClinicaConMedicos.m));
+		Assert.assertEquals("El medico no deberia haber sido eliminado", longitud, Clinica.getInstance().getMedicos().size());
 	}
 
 }

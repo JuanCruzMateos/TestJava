@@ -49,9 +49,10 @@ public class ClinicaConMedicosTest {
 
 	@Test
 	public void testEliminaMedico() {
+		int longitud = Clinica.getInstance().getMedicos().size();
 		Clinica.getInstance().eliminaMedico(ClinicaConMedicos.m);
-		Assert.assertFalse("El medico deberia haber sido eliminado",
-				Clinica.getInstance().getMedicos().contains(ClinicaConMedicos.m));
+		Assert.assertEquals("El medico deberia haber sido eliminado", longitud - 1, Clinica.getInstance().getMedicos().size());
+		Assert.assertFalse("El medico deberia haber sido eliminado", Clinica.getInstance().getMedicos().contains(ClinicaConMedicos.m));
 	}
 
 }
