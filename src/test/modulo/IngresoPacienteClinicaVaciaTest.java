@@ -14,6 +14,11 @@ import pacientes.IPaciente;
 import pacientes.PacienteFactory;
 import test.escenarios.EscenarioClinicaVacia;
 
+/**
+ * 
+ * verifica correcto funcionamiento de clinica.ingresarPaciente()
+ *
+ */
 public class IngresoPacienteClinicaVaciaTest {
 	private EscenarioClinicaVacia sindatos = new EscenarioClinicaVacia();
 
