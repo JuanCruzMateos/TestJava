@@ -8,7 +8,7 @@ import modulo.Clinica;
 import pacientes.IPaciente;
 import pacientes.LineaFactura;
 
-public class ClinicaVacia {
+public class EscenarioClinicaVacia {
 	private Clinica clinica = Clinica.getInstance();
 
 	public void setUp() {
@@ -21,5 +21,9 @@ public class ClinicaVacia {
 		clinica.sethPacientes(new ArrayList<IPaciente>());
 		clinica.setLineasFacturas(new ArrayList<LineaFactura>());
 		clinica.setLineasReporte(new ArrayList<LineaFactura>());
+	}
+
+	public Clinica getClinica() {
+		return this.clinica;
 	}
 }
