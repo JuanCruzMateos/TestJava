@@ -68,6 +68,6 @@ public class TestGrado {
 	public void testCalculoHonorarioDoctorado() {
 		IMedico m = new Doctorado(c);
 		double sueldo = m.calculaHonorario();
-		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100*1.1*1.05, 0.01);
+		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100*1.1*1.1, 0.01);
 	}
 }
