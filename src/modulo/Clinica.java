@@ -33,22 +33,31 @@ public class Clinica {
 
 	/**
 	 * Atributos de la clase clinica<br>
+	 *
 	 * instance : instancia de clinica estatica para aplicar el patron Singleton
 	 * posteriormente<br>
+	 * 
 	 * salaDeEsperaPrivada: se emplea una variable de tipo IPaciente ya que solo
 	 * habria un unico paciente en la sala de espera privada<br>
+	 * 
 	 * nroOrden : entero que asigna los numeros de orden a medida que los pacientes
 	 * ingresan a la lista de espera autoincrementable<br>
+	 * 
 	 * turno : entero autoincrementable que se utiliza para ir llamando a los
 	 * pacientes para que sean atendidos<br>
+	 * 
 	 * nroFactura : entero autoincrementable que se lo emplea para ir generando las
 	 * facturas de los pacientes egresantes<br>
+	 * 
 	 * sdf : sirve para darle formato de cadena de String a una instancia de
 	 * GregorianCalendar<br>
+	 * 
 	 * df : sirve para truncar los decimales de un tipo double a la hora de hacer un
 	 * system out<br>
+	 * 
 	 * hPacientes : coleccion "historica" de pacientes que toma registro de los
 	 * pacientes que ya han visitado la clinica en otras ocasiones<br>
+	 * 
 	 * impresion : atributo de tipo StringBuilder para concatenar cadenas y
 	 * retornarla en una unica
 	 * 
@@ -139,7 +148,6 @@ public class Clinica {
 		this.hPacientes = new ArrayList<IPaciente>();
 		this.lineasFacturas = new ArrayList<LineaFactura>();
 		this.lineasReporte = new ArrayList<LineaFactura>();
-
 	}
 
 	/**
