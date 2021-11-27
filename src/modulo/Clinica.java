@@ -464,7 +464,7 @@ public class Clinica {
 			this.impresion.append("Importe total: " + df.format(importeTotal) + "$" + "\n");
 			this.impresion.append("\n");
 			GregorianCalendar fechaDeSolicitud = new GregorianCalendar();
-			calculoImporteAdicionales(nroFactura, fechaDeSolicitud ,listaDeInsumos, fecha, importeTotal, subTotalImpar,
+			calculoImporteAdicionales(nroFactura, fechaDeSolicitud, listaDeInsumos, fecha, importeTotal, subTotalImpar,
 					paciente);
 			nroFactura++;
 			this.eliminaListaAtencion(paciente);
