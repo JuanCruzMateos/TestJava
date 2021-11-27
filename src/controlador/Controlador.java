@@ -46,8 +46,12 @@ import vista.MiOptionPane;
  *         Clase que representa al controlador, se encarga de independizar la
  *         vista del modelo
  */
-public class Controlador implements ActionListener {
-	private IVista vista = null;
+
+
+public class Controlador implements ActionListener
+{
+	protected IVista vista=null;   // CAMBIADO POR NOELIA DE PRIVATE A PROTECTED PARA HACER MOCK 
+
 	private InterfazOptionPanel optionpane = new MiOptionPane();
 	IPersistencia per = new PersistenciaBIN();
 
@@ -62,11 +66,24 @@ public class Controlador implements ActionListener {
 	}
 
 	/**
+
 	 * constructor de la clase, parametro IVista, se realiza la lectura de del
 	 * archivo que contiene los objetos del sistema
 	 * 
 	 * @param vista : permite llamar al metodo que sea necesario por el evento
 	 *              recibido
+
+	 * Constructor vacio
+	 */
+	public Controlador()
+	{
+		
+	}
+	
+	/**
+	 * constructor de la clase, parametro IVista, se realiza la lectura de del archivo que contiene los objetos del sistema
+	 * @param vista : permite llamar al metodo que sea necesario por el evento recibido
+
 	 */
 	public Controlador(IVista vista) {
 		this.vista = vista;
@@ -325,5 +342,11 @@ public class Controlador implements ActionListener {
 		}
 
 	}
+	
+	public void setVista(IVista vista)  // agregado por Noelia para test
+	{
+		this.vista = vista;
+	}
+	
 
 }

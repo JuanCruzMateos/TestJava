@@ -176,6 +176,7 @@ public class Ventana extends JFrame implements IVista {
 		this.panelListaPacientes.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPaneListaPaciente = new JScrollPane();
+		scrollPaneListaPaciente.setName("scrollPaneListaPaciente"); // NEW  FOR GUI-TEST
 		this.panelListaPacientes.add(scrollPaneListaPaciente, BorderLayout.CENTER);
 
 		this.ListaPacientes = new JList();
@@ -498,6 +499,8 @@ public class Ventana extends JFrame implements IVista {
 		this.ListaPacientes.setName("ListaPacientes");
 		this.ListaMedicos.setName("ListaMedicos");
 		this.ListaHabitaciones.setName("ListaHabitaciones");
+		this.panelListaPacientes.setName("panelListaPacientes"); // NEW  FOR GUI-TEST
+		
 
 	}
 
