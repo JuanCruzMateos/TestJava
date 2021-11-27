@@ -175,6 +175,28 @@ public class IngresoPacienteClinicaConDatosTest {
 	
 	@Test
 	public void agregarListaEsperaExitoso() {
-		
+		IPaciente p = null;
+		try {
+			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
+					"Mar del Plata", 9, "Joven");
+		} catch (TipoPacienteInvalidoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		try {
+			this.condatos.getClinica().agregaListaEspera(p);
+		} catch (PacienteYaIngresadoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		assertTrue("Deberia estar agregado a la lista de espera", this.condatos.getClinica().getListaDeEspera().contains(p));
+	}
+	
+	@Test
+	public void agregaListaEsperaExistente() {
+		IPaciente p = this.condatos.getPacienteEnPatio();
+		try {
+			this.condatos.getClinica().agregaListaEspera(p);
+			fail("Deberia arrojar excepcion");
+		} catch (PacienteYaIngresadoException e) {
+		}
 	}
 }

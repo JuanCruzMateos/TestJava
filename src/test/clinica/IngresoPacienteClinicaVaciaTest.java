@@ -72,4 +72,21 @@ public class IngresoPacienteClinicaVaciaTest {
 		} catch (NoHayPacienteEsperandoException e) {
 		}
 	}
+	
+	@Test
+	public void agregarListaEsperaExitoso() {
+		IPaciente p = null;
+		try {
+			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
+					"Mar del Plata", 9, "Joven");
+		} catch (TipoPacienteInvalidoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		try {
+			this.sindatos.getClinica().agregaListaEspera(p);
+		} catch (PacienteYaIngresadoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		assertTrue("Deberia estar agregado a la lista de espera", this.sindatos.getClinica().getListaDeEspera().contains(p));
+	}
 }
