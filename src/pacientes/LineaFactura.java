@@ -10,7 +10,6 @@ import medicos.IMedico;
  *         linea para informar a la hora del egreso de un paciente
  */
 public class LineaFactura implements Serializable {
-
 	private IHabitacion habitacion;
 	private int cantDias;
 	private IPaciente paciente;
@@ -44,7 +43,7 @@ public class LineaFactura implements Serializable {
 	public IMedico getMedico() {
 		return medico;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -52,7 +51,7 @@ public class LineaFactura implements Serializable {
 		if (obj == null)
 			return false;
 		LineaFactura other = (LineaFactura) obj;
-		if (cantDias!= other.cantDias || paciente!= other.paciente || medico != other.medico)
+		if (cantDias != other.cantDias || paciente != other.paciente || medico != other.medico)
 			return false;
 		return true;
 	}

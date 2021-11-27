@@ -26,6 +26,9 @@ public class EscenarioClinicaConDatos {
 	private IPaciente primerPaciente;
 
 	public void setUp() {
+		this.clinica.setNroOrden(1);
+		this.clinica.setTurno(1);
+		this.clinica.setNroFactura(1);
 		this.clinica.setMedicos(new ArrayList<IMedico>());
 		this.clinica.setListaDeEspera(new ArrayList<IPaciente>());
 		this.clinica.setListaDeAtencion(new ArrayList<IPaciente>());
@@ -37,9 +40,8 @@ public class EscenarioClinicaConDatos {
 		this.clinica.setLineasReporte(new ArrayList<LineaFactura>());
 
 		try {
-			IPaciente p1 = PacienteFactory.getPaciente("11111111", "Carlos Perez", "155111111", "Mitre 1234",
+			this.primerPaciente = PacienteFactory.getPaciente("11111111", "Carlos Perez", "155111111", "Mitre 1234",
 					"Mar del Plata", 1, "Mayor");
-			this.primerPaciente = p1;
 			IPaciente p2 = PacienteFactory.getPaciente("22222222", "Maria Perez", "155222222", "Paso 1474",
 					"Mar del Plata", 2, "Nino");
 			IPaciente p3 = PacienteFactory.getPaciente("33333333", "Marcos Lopez", "155333333", "Falucho 2334",
@@ -53,7 +55,7 @@ public class EscenarioClinicaConDatos {
 			this.pacienteEnSalaPrivada = PacienteFactory.getPaciente("77777777", "Juan Martinez", "155777777",
 					"Alsina 63", "Mar del Plata", 7, "Mayor");
 
-			this.clinica.ingresoPaciente(p1);
+			this.clinica.ingresoPaciente(this.primerPaciente);
 			this.clinica.ingresoPaciente(p2);
 			this.clinica.ingresoPaciente(p3);
 			this.clinica.ingresoPaciente(p4);
@@ -80,6 +82,10 @@ public class EscenarioClinicaConDatos {
 
 	public IPaciente getPacienteEnPatio() {
 		return pacienteEnPatio;
+	}
+
+	public IPaciente getPrimerPaciente() {
+		return primerPaciente;
 	}
 
 }
