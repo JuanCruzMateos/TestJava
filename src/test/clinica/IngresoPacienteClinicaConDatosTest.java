@@ -1,6 +1,8 @@
 package test.clinica;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -121,14 +123,15 @@ public class IngresoPacienteClinicaConDatosTest {
 			this.condatos.getClinica().ingresoNuevamente(this.condatos.getPacienteEnSalaPrivada());
 
 			if (!this.condatos.getClinica().getPatio().contains(this.condatos.getPacienteEnSalaPrivada())
-					&& this.condatos.getClinica().getSalaDeEsperaPrivada() != this.condatos.getPacienteEnSalaPrivada()) {
+					&& this.condatos.getClinica().getSalaDeEsperaPrivada() != this.condatos
+							.getPacienteEnSalaPrivada()) {
 				fail("No se ingreso correctamente el paciente a la clinica");
 			}
 		} catch (PacienteYaIngresadoException e) {
 			fail("Deberia agregar al paciente que ya existe en el historico en la lista de espera");
 		}
 	}
-	
+
 	@Test
 	public void agregaPacienteHistoricoExitoso() {
 		IPaciente p = null;
@@ -145,7 +148,7 @@ public class IngresoPacienteClinicaConDatosTest {
 		}
 		assertTrue("Deberia contener el paciente historico", this.condatos.getClinica().gethPacientes().contains(p));
 	}
-	
+
 	@Test
 	public void testAgregaPacienteHistoricoRepetido() {
 		IPaciente p = null;
@@ -161,26 +164,32 @@ public class IngresoPacienteClinicaConDatosTest {
 			fail("Deberia saltar una excepcion");
 		} catch (PacienteRepetidoException e) {
 		}
-		
 	}
-	
+
 	@Test
-	public void testLlamarPacienteExitoso() {
-		IPaciente p = null;
-		ArrayList<IPaciente> pacientes = new ArrayList<>();
-		p = this.condatos.getPacienteEnPatio();
-		p.setNroTurno(1);
-		pacientes.add(p);
-		this.condatos.getClinica().setListaDeEspera(pacientes);
+	public void llamarPacienteExitoso() {
 		try {
-			 this.condatos.getClinica().llamarPaciente();
+			ArrayList<IPaciente> enPatio = this.condatos.getClinica().getPatio();
+
+			IPaciente paciente = this.condatos.getClinica().llamarPaciente();
+			System.out.println(paciente);
+			System.out.println(this.condatos.getPacienteEnPatio());
+			assertEquals("No retiro al paciente con el primer turno", paciente == this.condatos.getPrimerPaciente());
+			assertFalse("No elimino al paciente de la lista de espera correctamente",
+					this.condatos.getClinica().getListaDeEspera().contains(paciente));
+			assertTrue("No agrego correctamente al paciente en la lista de atencion",
+					this.condatos.getClinica().getListaDeAtencion().contains(paciente));
+			if (enPatio.contains(paciente)) {
+				assertNull("No elimino correctamente al paciente de la sala de espera privada");
+			} else {
+				assertFalse("No elimino correctamente al paciente del patio",
+						this.condatos.getClinica().getPatio().contains(paciente));
+			}
 		} catch (NoHayPacienteEsperandoException e) {
-			fail("No deberia lanzar una excepcion");
+			fail("Deberia lanzarse una excepcion de tipo NoHayPacienteEsperandoException");
 		}
-		assertFalse("No deberia estar en la lista de espera", this.condatos.getClinica().getListaDeEspera().contains(p));
-		assertTrue("Deberia estar en la lista de atencion", this.condatos.getClinica().getListaDeAtencion().contains(p));
 	}
-	
+
 	@Test
 	public void testAgregarListaEsperaExitoso() {
 		IPaciente p = null;
@@ -195,9 +204,10 @@ public class IngresoPacienteClinicaConDatosTest {
 		} catch (PacienteYaIngresadoException e) {
 			fail("No deberia arrojar excepcion");
 		}
-		assertTrue("Deberia estar agregado a la lista de espera", this.condatos.getClinica().getListaDeEspera().contains(p));
+		assertTrue("Deberia estar agregado a la lista de espera",
+				this.condatos.getClinica().getListaDeEspera().contains(p));
 	}
-	
+
 	@Test
 	public void testAgregaListaEsperaExistente() {
 		IPaciente p = this.condatos.getPacienteEnPatio();
@@ -207,23 +217,26 @@ public class IngresoPacienteClinicaConDatosTest {
 		} catch (PacienteYaIngresadoException e) {
 		}
 	}
-	
+
 	@Test
 	public void testHayPrestacion() {
 		LineaFactura f1 = null;
 		ArrayList<LineaFactura> facturas = new ArrayList<>();
 		try {
-			f1 = new LineaFactura(new SalaTerapiaIntensiva(100), 1, this.condatos.getPacienteEnPatio(), MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano",
-					"Permanente", "Magister", 100));
+			f1 = new LineaFactura(new SalaTerapiaIntensiva(100), 1, this.condatos.getPacienteEnPatio(),
+					MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano",
+							"Permanente", "Magister", 100));
 		} catch (PosgradoInvalidoException | ContratacionInvalidaException | EspecialidadInvalidaException e) {
 		}
 		facturas.add(f1);
 		this.condatos.getClinica().setLineasFacturas(facturas);
-		assertTrue("Deberia contener prestaciones",this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
+		assertTrue("Deberia contener prestaciones",
+				this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
 	}
-	
+
 	@Test
 	public void testNoHayPrestacion() {
-		assertFalse("Deberia contener prestaciones",this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
+		assertFalse("Deberia contener prestaciones",
+				this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
 	}
 }

@@ -46,7 +46,7 @@ public class IngresoPacienteClinicaVaciaTest {
 			fail("No deberian ocurrir excepciones: El paciente a ingresar es nuevo, no se lo ha ingresado antes");
 		}
 	}
-	
+
 	@Test
 	public void agregaPacienteHistoricoExitoso() {
 		IPaciente p = null;
@@ -63,13 +63,14 @@ public class IngresoPacienteClinicaVaciaTest {
 		}
 		assertTrue("Deberia contener el paciente historico", this.sindatos.getClinica().gethPacientes().contains(p));
 	}
-	
+
 	@Test
 	public void llamarPacienteNOExitoso() {
 		try {
-			 this.sindatos.getClinica().llamarPaciente();
-			 fail("Deberia arrojar NoHayPacienteException");
+			IPaciente paciente = this.sindatos.getClinica().llamarPaciente();
+			fail("Deberia lanzarse una excepcion de tipo NoHayPacienteEsperandoException");
 		} catch (NoHayPacienteEsperandoException e) {
+			// Correcto
 		}
 	}
 	
