@@ -453,8 +453,10 @@ public class Clinica {
 	public String egreso(IPaciente paciente, GregorianCalendar fecha) throws EgresoInvalidoException {
 
 		double importeTotal = 0;
+		double subTotalImpar = 0;
 		int ocurrencias;
 		double honorario;
+		ArrayList<Double> listaDeInsumos = new ArrayList<Double>();
 		this.impresion.delete(0, this.impresion.length());
 		// this.impresion.append("");
 		if (paciente.getHabitacion() != null) {
@@ -480,6 +482,9 @@ public class Clinica {
 					this.impresion.append(
 							"********************************************************************************" + "\n");
 					importeTotal += ocurrencias * honorario;
+					if (i % 2 == 1)
+						subTotalImpar += ocurrencias * honorario;
+
 				}
 
 			}
@@ -490,7 +495,9 @@ public class Clinica {
 
 			this.impresion.append("Importe total: " + df.format(importeTotal) + "$" + "\n");
 			this.impresion.append("\n");
-
+			GregorianCalendar fechaDeSolicitud = ;
+			calculoImporteAdicionales(nroFactura, fechaDeSolicitud ,listaDeInsumos, fecha, importeTotal, subTotalImpar,
+					paciente);
 			nroFactura++;
 			this.eliminaListaAtencion(paciente);
 			paciente.setFacturo(true);
@@ -500,6 +507,43 @@ public class Clinica {
 			throw new EgresoInvalidoException(null, paciente);
 
 		return this.impresion.toString();
+	}
+
+	public double calculoImporteAdicionales(int numeroDeFactura, GregorianCalendar fechaDeSolicitud,
+			ArrayList<Double> listaDeInsumos, GregorianCalendar fechaDeFacturacion, double totalFacturado,
+			double subTotalImpar, IPaciente paciente) {
+		double importeParcial = 0;
+		double importeTotal = 0;
+		double respuesta = 0;
+		double A = 0.8, B = 0.4, C = 1.5, D = 0.9;
+		int aleatorio = (int) (Math.random() * 31) + 1;
+		int diaDeLaFechaDeFacturacion = fechaDeFacturacion.getTime().getDay();
+		if (numeroDeFactura <= this.nroFactura) {
+			if (fechaDeSolicitud.compareTo(fechaDeFacturacion) < 10) {
+				importeParcial = totalFacturado - (subTotalImpar * A);
+			} else {
+				importeParcial = totalFacturado * B;
+			}
+			if (paciente.getRangoEtareo().equalsIgnoreCase("Mayor")) {
+				importeTotal = importeParcial * C;
+			} else {
+				importeTotal = importeParcial * D;
+			}
+			if (aleatorio == diaDeLaFechaDeFacturacion) {
+				respuesta = importeTotal;
+			}
+			respuesta = importeTotal + sumaValores(listaDeInsumos);
+			return respuesta;
+
+		} else
+			return importeParcial;
+	}
+
+	private double sumaValores(ArrayList<Double> listaDeInsumos) {
+		double suma = 0;
+		for (int i = 0; i < listaDeInsumos.size(); i++)
+			suma += listaDeInsumos.get(i);
+		return suma;
 	}
 
 	/**

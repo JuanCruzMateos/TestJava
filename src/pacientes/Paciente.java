@@ -1,7 +1,7 @@
 package pacientes;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 
@@ -20,7 +20,7 @@ public abstract class Paciente implements IPaciente {
 	protected GregorianCalendar fechaEgreso;
 	protected IHabitacion habitacion = null;
 	protected boolean facturo = false;
-
+	protected String rangoEtareo;
 	/**
 	 * Constructor de Paciente que se le pasan varios parametros por string y un
 	 * entero<br>
@@ -38,13 +38,15 @@ public abstract class Paciente implements IPaciente {
 	 * @param numHistoria : parametro entero, numero de historia clinica del
 	 *                    paciente ingresante<br>
 	 */
-	public Paciente(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria) {
+	public Paciente(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria,
+			String rangoEtareo) {
 		this.dni = dni;
 		this.nomAp = nomAp;
 		this.telefono = telefono;
 		this.domicilio = domicilio;
 		this.ciudad = ciudad;
 		this.numHistoria = numHistoria;
+		this.rangoEtareo = rangoEtareo;
 	}
 
 	public boolean isFacturo() {
@@ -165,6 +167,10 @@ public abstract class Paciente implements IPaciente {
 
 	public void setNumHistoria(int numHistoria) {
 		this.numHistoria = numHistoria;
+	}
+
+	public String getRangoEtareo() {
+		return rangoEtareo;
 	}
 
 }

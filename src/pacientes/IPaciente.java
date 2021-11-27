@@ -62,6 +62,8 @@ public interface IPaciente extends Comparable<IPaciente>, Serializable {
 
 	String getNombre();
 
+	String getRangoEtareo();
+	
 	String getDNI();
 
 	IHabitacion getHabitacion();

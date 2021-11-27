@@ -7,7 +7,7 @@ package pacientes;
 public class Joven extends Paciente {
 
 	public Joven(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria) {
-		super(dni, nomAp, telefono, domicilio, ciudad, numHistoria);
+		super(dni, nomAp, telefono, domicilio, ciudad, numHistoria, "Joven");
 	}
 
 	@Override
