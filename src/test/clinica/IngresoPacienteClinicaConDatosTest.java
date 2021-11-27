@@ -1,18 +1,26 @@
 package test.clinica;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.ContratacionInvalidaException;
+import excepciones.EspecialidadInvalidaException;
 import excepciones.JugoRobinhoException;
 import excepciones.NoHayPacienteEsperandoException;
 import excepciones.PacienteRepetidoException;
 import excepciones.PacienteYaIngresadoException;
+import excepciones.PosgradoInvalidoException;
 import excepciones.TipoPacienteInvalidoException;
+import habitaciones.SalaTerapiaIntensiva;
+import medicos.MedicoFactory;
 import pacientes.IPaciente;
+import pacientes.LineaFactura;
 import pacientes.PacienteFactory;
 import test.escenarios.EscenarioClinicaConDatos;
 
@@ -139,7 +147,7 @@ public class IngresoPacienteClinicaConDatosTest {
 	}
 	
 	@Test
-	public void agregaPacienteHistoricoRepetido() {
+	public void testAgregaPacienteHistoricoRepetido() {
 		IPaciente p = null;
 		try {
 			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
@@ -157,7 +165,7 @@ public class IngresoPacienteClinicaConDatosTest {
 	}
 	
 	@Test
-	public void llamarPacienteExitoso() {
+	public void testLlamarPacienteExitoso() {
 		IPaciente p = null;
 		ArrayList<IPaciente> pacientes = new ArrayList<>();
 		p = this.condatos.getPacienteEnPatio();
@@ -174,7 +182,7 @@ public class IngresoPacienteClinicaConDatosTest {
 	}
 	
 	@Test
-	public void agregarListaEsperaExitoso() {
+	public void testAgregarListaEsperaExitoso() {
 		IPaciente p = null;
 		try {
 			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
@@ -191,12 +199,31 @@ public class IngresoPacienteClinicaConDatosTest {
 	}
 	
 	@Test
-	public void agregaListaEsperaExistente() {
+	public void testAgregaListaEsperaExistente() {
 		IPaciente p = this.condatos.getPacienteEnPatio();
 		try {
 			this.condatos.getClinica().agregaListaEspera(p);
 			fail("Deberia arrojar excepcion");
 		} catch (PacienteYaIngresadoException e) {
 		}
+	}
+	
+	@Test
+	public void testHayPrestacion() {
+		LineaFactura f1 = null;
+		ArrayList<LineaFactura> facturas = new ArrayList<>();
+		try {
+			f1 = new LineaFactura(new SalaTerapiaIntensiva(100), 1, this.condatos.getPacienteEnPatio(), MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano",
+					"Permanente", "Magister", 100));
+		} catch (PosgradoInvalidoException | ContratacionInvalidaException | EspecialidadInvalidaException e) {
+		}
+		facturas.add(f1);
+		this.condatos.getClinica().setLineasFacturas(facturas);
+		assertTrue("Deberia contener prestaciones",this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
+	}
+	
+	@Test
+	public void testNoHayPrestacion() {
+		assertFalse("Deberia contener prestaciones",this.condatos.getClinica().hayPrestacion(this.condatos.getPacienteEnPatio()));
 	}
 }
