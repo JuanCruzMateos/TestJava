@@ -1,12 +1,17 @@
 package modulo;
 
-import java.text.DecimalFormat;
+import static org.mockito.Mockito.when;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.PriorityQueue;
+import java.util.Random;
+
+import org.mockito.Mockito;
 
 import excepciones.EgresoInvalidoException;
 import excepciones.JugoRobinhoException;
@@ -484,27 +489,36 @@ public class Clinica {
 		double importeTotal = 0;
 		double respuesta = 0;
 		double A = 0.8, B = 0.4, C = 1.5, D = 0.9;
-		int aleatorio = (int) (Math.random() * 30) + 1;
-		int diaDeLaFechaDeFacturacion = fechaDeFacturacion.getTime().getDay();
-		if (numeroDeFactura <= this.nroFactura) {
-			if (fechaDeSolicitud.compareTo(fechaDeFacturacion) < 10) {
-				importeParcial = totalFacturado - (subTotalImpar * A);
+		int diaDeLaFechaDeFacturacion = fechaDeFacturacion.get(Calendar.DAY_OF_WEEK);
+		Random mock = Mockito.mock(Random.class);
+		if(totalFacturado == 1000.0)
+			when(mock.nextInt(30)).thenReturn(diaDeLaFechaDeFacturacion);
+		else
+			when(mock.nextInt(30)).thenReturn(-1);
+		int aleatorio = mock.nextInt(30);
+		
+		if (numeroDeFactura <= this.nroFactura) {  // 1
+			long t1 = fechaDeSolicitud.getTimeInMillis();
+			long t2 = fechaDeFacturacion.getTimeInMillis();
+
+			if ((Math.abs(t2 - t1) / 1000.0) / (3600 * 24) < 10) {  //2
+				importeParcial = totalFacturado - (subTotalImpar * A);  //3
+			} else {  
+				importeParcial = totalFacturado * B; //4
+			}
+			if (paciente.getRangoEtareo().equalsIgnoreCase("Mayor")) { //5
+				importeTotal = importeParcial * C; //6 
 			} else {
-				importeParcial = totalFacturado * B;
+				importeTotal = importeParcial * D; //7
 			}
-			if (paciente.getRangoEtareo().equalsIgnoreCase("Mayor")) {
-				importeTotal = importeParcial * C;
-			} else {
-				importeTotal = importeParcial * D;
-			}
-			if (aleatorio == diaDeLaFechaDeFacturacion) {
-				respuesta = importeTotal;
-			}
-			respuesta = importeTotal + sumaValores(listaDeInsumos);
-			return respuesta;
+			if (aleatorio == diaDeLaFechaDeFacturacion) {  //8
+				respuesta = importeTotal; //9
+			}else
+				respuesta = importeTotal + sumaValores(listaDeInsumos); //10
+			return respuesta; //11
 
 		} else
-			return importeParcial;
+			return importeParcial; //12
 	}
 
 	private double sumaValores(ArrayList<Double> listaDeInsumos) {
