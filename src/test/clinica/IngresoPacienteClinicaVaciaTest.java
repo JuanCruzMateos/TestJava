@@ -73,7 +73,7 @@ public class IngresoPacienteClinicaVaciaTest {
 			// Correcto
 		}
 	}
-	
+
 	@Test
 	public void agregarListaEsperaExitoso() {
 		IPaciente p = null;
@@ -88,6 +88,7 @@ public class IngresoPacienteClinicaVaciaTest {
 		} catch (PacienteYaIngresadoException e) {
 			fail("No deberia arrojar excepcion");
 		}
-		assertTrue("Deberia estar agregado a la lista de espera", this.sindatos.getClinica().getListaDeEspera().contains(p));
+		assertTrue("Deberia estar agregado a la lista de espera",
+				this.sindatos.getClinica().getListaDeEspera().contains(p));
 	}
 }

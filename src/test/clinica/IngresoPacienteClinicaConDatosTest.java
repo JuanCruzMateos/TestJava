@@ -172,9 +172,7 @@ public class IngresoPacienteClinicaConDatosTest {
 			ArrayList<IPaciente> enPatio = this.condatos.getClinica().getPatio();
 
 			IPaciente paciente = this.condatos.getClinica().llamarPaciente();
-			System.out.println(paciente);
-			System.out.println(this.condatos.getPacienteEnPatio());
-			assertEquals("No retiro al paciente con el primer turno", paciente == this.condatos.getPrimerPaciente());
+			assertEquals("No retiro al paciente con el primer turno", this.condatos.getPrimerPaciente(), paciente);
 			assertFalse("No elimino al paciente de la lista de espera correctamente",
 					this.condatos.getClinica().getListaDeEspera().contains(paciente));
 			assertTrue("No agrego correctamente al paciente en la lista de atencion",

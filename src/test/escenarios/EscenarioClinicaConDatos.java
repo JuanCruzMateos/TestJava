@@ -26,6 +26,9 @@ public class EscenarioClinicaConDatos {
 	private IPaciente primerPaciente;
 
 	public void setUp() {
+		this.clinica.setNroOrden(1);
+		this.clinica.setTurno(1);
+		this.clinica.setNroFactura(1);
 		this.clinica.setMedicos(new ArrayList<IMedico>());
 		this.clinica.setListaDeEspera(new ArrayList<IPaciente>());
 		this.clinica.setListaDeAtencion(new ArrayList<IPaciente>());
