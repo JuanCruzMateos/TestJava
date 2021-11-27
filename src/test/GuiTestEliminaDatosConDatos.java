@@ -76,6 +76,7 @@ public class GuiTestEliminaDatosConDatos {
 	@Test
     public void testEliminaOKUnoSolo()
     {
+		System.out.println("test uno solo");
         robot.delay(TestUtils.getDelay());
         // Hay una JList dentro de un JScrollPane
         // Obtengo la referencia a la JList que contiene los pacientes     
@@ -144,6 +145,7 @@ public class GuiTestEliminaDatosConDatos {
 	@Test
     public void testEliminaOKTodos()
     {
+		System.out.println("test Todos");
 		System.out.println("testeando eliminar todos los pacientes");
         robot.delay(TestUtils.getDelay());
         // Hay una JList dentro de un JScrollPane
@@ -204,6 +206,116 @@ public class GuiTestEliminaDatosConDatos {
             myPos --;
         }
         Assert.assertEquals("La lista deberia quedar vacia", 0, pacientes.getModel().getSize());
+        robot.delay(2000);
+    }
+	
+	@Test
+    public void testEliminaTodosMasUnoMal()
+    {
+		System.out.println("\ntest todos mas 1");
+		System.out.println("testeando eliminar todos los pacientes y un poquito mas");
+        robot.delay(TestUtils.getDelay());
+        // Hay una JList dentro de un JScrollPane
+        // Obtengo la referencia a la JList que contiene los pacientes     
+        JList pacientes = (JList) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "ListaPacientes");
+        // Obtengo la referencia al boton de borrar
+        JButton botonBorrar = (JButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "btnEliminar");
+        
+        // Obtengo la referencia al JScrollPane
+        JScrollPane contenedor = (JScrollPane) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "scrollPaneListaPaciente");
+        
+        // Obtengo la posicion del contenedor (JScrollPane)
+        Point posicion = contenedor.getLocationOnScreen();        
+        System.out.println("contenedor pacientes position = "+posicion);
+        
+        
+        //  Voy a hacer click cerca del inicio del contenido --> 20% del ancho
+        int anchoContenedor = (int) (contenedor.getWidth()*0.2);
+        
+        // Obtengo la cantidad de elementos que tiene actualmente la lista
+        int numeroDeElementos = pacientes.getModel().getSize();
+        
+        int myPos=numeroDeElementos-1;
+        while (myPos>=0) {        	
+        	
+        	System.err.println("Cantidad de elementos "+numeroDeElementos);	
+        	System.out.println("Borrando elemento numero "+ myPos);
+        	IPaciente pac = (IPaciente) pacientes.getModel().getElementAt(myPos);
+            System.out.println("Borrando registro del paciente "+pac.getNombre());
+            
+            // Obtengo la posicion del elemento en la lista, referenciado a su contenedor
+            Point indexToLocation = pacientes.indexToLocation(myPos);
+            System.out.println(indexToLocation);
+            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR
+            robot.delay(500);
+            System.out.println("Ya espere 3 segundos");            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR
+            
+            
+            // Nos posicionamos sobre el elemento que deseamos eliminar
+            int x = (int) posicion.getX() + (int) indexToLocation.getX()+ anchoContenedor;
+            int y = (int) posicion.getY() + (int) indexToLocation.getY()+1;
+            
+            // movemos el mouse
+            robot.mouseMove(x, y);
+            System.out.println("moviendo mouse a x = "+x+" - y = "+y);
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            robot.delay(500);
+            // hago click en el boton borrar
+            TestUtils.clickComponent(botonBorrar, robot); 
+            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR  -- QUE NO CIERRE LA VENTANA
+            robot.delay(TestUtils.getDelay());
+            robot.delay(500);
+            System.out.println("Y 3 segundos mas por las dudas");   
+            myPos --;
+        }
+        
+        try
+        {
+        	System.err.println("Cantidad de elementos "+numeroDeElementos);	
+        	System.out.println("Borrando elemento numero "+ myPos);
+        	IPaciente pac = (IPaciente) pacientes.getModel().getElementAt(myPos);
+            System.out.println("Borrando registro del paciente "+pac.getNombre());
+            
+            // Obtengo la posicion del elemento en la lista, referenciado a su contenedor
+            Point indexToLocation = pacientes.indexToLocation(myPos);
+            System.out.println(indexToLocation);
+            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR
+            robot.delay(500);
+            System.out.println("Ya espere 3 segundos");            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR
+            
+            
+            // Nos posicionamos sobre el elemento que deseamos eliminar
+            int x = (int) posicion.getX() + (int) indexToLocation.getX()+ anchoContenedor;
+            int y = (int) posicion.getY() + (int) indexToLocation.getY()+1;
+            
+            // movemos el mouse
+            robot.mouseMove(x, y);
+            System.out.println("moviendo mouse a x = "+x+" - y = "+y);
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            robot.delay(500);
+            // hago click en el boton borrar
+            TestUtils.clickComponent(botonBorrar, robot); 
+            
+            //  BORRAR AL FINALIZAR -- ES PARA TESTEAR  -- QUE NO CIERRE LA VENTANA
+            robot.delay(TestUtils.getDelay());
+            robot.delay(500);
+            System.out.println("Y 3 segundos mas por las dudas");
+            Assert.assertTrue("Debia saltar la excepcion y no lo hizo", false);
+        } catch (IndexOutOfBoundsException e)  {
+        	
+        	Assert.assertTrue("Siempre deberia sltar la excepcion al intentar borrar mas de la cantidad disponible", true);
+        }
+        
+          
+        
+        
         robot.delay(2000);
     }
 }
