@@ -490,15 +490,14 @@ public class Clinica {
 			ArrayList<Double> listaDeInsumos, GregorianCalendar fechaDeFacturacion, double totalFacturado,
 			double subTotalImpar, IPaciente paciente) {
 
-		Random mock = mock(Random.class);
-		when(mock.nextInt(30)).then(CALLS_REAL_METHODS);
-
+		Math mock = mock(Math.class);
 		double importeParcial = 0;
 		double importeTotal = 0;
 		double respuesta = 0;
 		double A = 0.8, B = 0.4, C = 1.5, D = 0.9;
 
 		int diaDeLaFechaDeFacturacion = fechaDeFacturacion.get(Calendar.DAY_OF_WEEK);
+<<<<<<< HEAD
 		Random mock = Mockito.mock(Random.class);
 		if (totalFacturado == 1000.0)
 			when(mock.nextInt(30)).thenReturn(diaDeLaFechaDeFacturacion);
@@ -507,6 +506,15 @@ public class Clinica {
 		int aleatorio = mock.nextInt(30);
 
 		if (numeroDeFactura <= this.nroFactura) { // 1
+=======
+		
+		if (diaDeLaFechaDeFacturacion % 2 == 0)
+			when(mock.random()).thenReturn((double) diaDeLaFechaDeFacturacion);
+		else
+			when(mock.random()).thenReturn((double) diaDeLaFechaDeFacturacion);
+		
+		if (numeroDeFactura <= this.nroFactura) {
+>>>>>>> 9ec07b4 (persist)
 			long t1 = fechaDeSolicitud.getTimeInMillis();
 			long t2 = fechaDeFacturacion.getTimeInMillis();
 
