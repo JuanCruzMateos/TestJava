@@ -51,7 +51,7 @@ public class IngresoPacienteClinicaConDatosTest {
 	@Test
 	public void ingresoPacienteRepetidoTest() { // repetido en historicos
 		try {
-			this.condatos.getClinica().ingresoPaciente(this.condatos.getPaciente());
+			this.condatos.getClinica().ingresoPaciente(this.condatos.getPacienteEnSalaPrivada());
 			fail("Deberia lanzarse una excepcion de tipo PacienteRepetidoException: ya esta en el historico");
 		} catch (PacienteRepetidoException e) {
 			// el paciente ya se encuentra en la lista de historicos
@@ -67,9 +67,9 @@ public class IngresoPacienteClinicaConDatosTest {
 	public void ingresoPacienteYaIngresadoTest() { // ingresado en lista de espera
 		try {
 			// borro el paciente del historico, pero no de la lista de espera
-			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPaciente());
+			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPacienteEnSalaPrivada());
 			// lo ingreso
-			this.condatos.getClinica().ingresoPaciente(this.condatos.getPaciente());
+			this.condatos.getClinica().ingresoPaciente(this.condatos.getPacienteEnSalaPrivada());
 			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
 		} catch (PacienteRepetidoException e) {
 			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
@@ -85,9 +85,9 @@ public class IngresoPacienteClinicaConDatosTest {
 	public void ingresoPacienteNuevamenteYaIngresadoTest() {
 		try {
 			// borro el paciente del historico, pero no de la lista de espera
-			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPaciente());
+			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPacienteEnSalaPrivada());
 			// lo ingreso otra vez
-			this.condatos.getClinica().ingresoNuevamente(this.condatos.getPaciente());
+			this.condatos.getClinica().ingresoNuevamente(this.condatos.getPacienteEnSalaPrivada());
 			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException: ya esta en la lista de espera");
 		} catch (PacienteYaIngresadoException e) {
 			//
@@ -100,17 +100,17 @@ public class IngresoPacienteClinicaConDatosTest {
 	public void ingresoPacienteNuevamenteTest() {
 		try {
 			// borro el paciente de la lista de espera
-			this.condatos.getClinica().eliminaListaEspera(this.condatos.getPaciente());
-			if (this.condatos.getClinica().getSalaDeEsperaPrivada() == this.condatos.getPaciente()) {
+			this.condatos.getClinica().eliminaListaEspera(this.condatos.getPacienteEnSalaPrivada());
+			if (this.condatos.getClinica().getSalaDeEsperaPrivada() == this.condatos.getPacienteEnSalaPrivada()) {
 				this.condatos.getClinica().setSalaDeEsperaPrivada(null);
 			} else {
-				this.condatos.getClinica().getPatio().remove(this.condatos.getPaciente());
+				this.condatos.getClinica().getPatio().remove(this.condatos.getPacienteEnSalaPrivada());
 			}
 			// lo ingreso otra vez
-			this.condatos.getClinica().ingresoNuevamente(this.condatos.getPaciente());
+			this.condatos.getClinica().ingresoNuevamente(this.condatos.getPacienteEnSalaPrivada());
 
-			if (!this.condatos.getClinica().getPatio().contains(this.condatos.getPaciente())
-					&& this.condatos.getClinica().getSalaDeEsperaPrivada() != this.condatos.getPaciente()) {
+			if (!this.condatos.getClinica().getPatio().contains(this.condatos.getPacienteEnSalaPrivada())
+					&& this.condatos.getClinica().getSalaDeEsperaPrivada() != this.condatos.getPacienteEnSalaPrivada()) {
 				fail("No se ingreso correctamente el paciente a la clinica");
 			}
 		} catch (PacienteYaIngresadoException e) {

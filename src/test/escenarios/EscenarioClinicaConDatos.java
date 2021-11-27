@@ -21,12 +21,8 @@ import pacientes.PacienteFactory;
  */
 public class EscenarioClinicaConDatos {
 	private final Clinica clinica = Clinica.getInstance();
-	private IPaciente paciente;
-
-	public static void main(String[] args) {
-		EscenarioClinicaConDatos e = new EscenarioClinicaConDatos();
-		e.setUp();
-	}
+	private IPaciente pacienteEnSalaPrivada;
+	private IPaciente pacienteEnPatio;
 
 	public void setUp() {
 		this.clinica.setMedicos(new ArrayList<IMedico>());
@@ -50,18 +46,18 @@ public class EscenarioClinicaConDatos {
 					"Mar del Plata", 4, "Joven");
 			IPaciente p5 = PacienteFactory.getPaciente("55555555", "Camila Diaz", "155555555", "Luro 1527",
 					"Mar del Plata", 5, "Mayor");
-			IPaciente p6 = PacienteFactory.getPaciente("66666666", "Lucas Rodriguez", "155666666", "Colon 1472",
+			this.pacienteEnPatio = PacienteFactory.getPaciente("66666666", "Lucas Rodriguez", "155666666", "Colon 1472",
 					"Mar del Plata", 6, "Nino");
-			this.paciente = PacienteFactory.getPaciente("77777777", "Juan Martinez", "155777777", "Alsina 63",
-					"Mar del Plata", 7, "Mayor");
+			this.pacienteEnSalaPrivada = PacienteFactory.getPaciente("77777777", "Juan Martinez", "155777777",
+					"Alsina 63", "Mar del Plata", 7, "Mayor");
 
 			this.clinica.ingresoPaciente(p1);
 			this.clinica.ingresoPaciente(p2);
 			this.clinica.ingresoPaciente(p3);
 			this.clinica.ingresoPaciente(p4);
 			this.clinica.ingresoPaciente(p5);
-			this.clinica.ingresoPaciente(p6);
-			this.clinica.ingresoPaciente(this.paciente);
+			this.clinica.ingresoPaciente(this.pacienteEnPatio);
+			this.clinica.ingresoPaciente(this.pacienteEnSalaPrivada);
 
 		} catch (TipoPacienteInvalidoException e) {
 			//
@@ -76,8 +72,12 @@ public class EscenarioClinicaConDatos {
 		return this.clinica;
 	}
 
-	public IPaciente getPaciente() {
-		return this.paciente;
+	public IPaciente getPacienteEnSalaPrivada() {
+		return this.pacienteEnSalaPrivada;
+	}
+
+	public IPaciente getPacienteEnPatio() {
+		return pacienteEnPatio;
 	}
 
 }

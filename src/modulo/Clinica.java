@@ -65,47 +65,16 @@ public class Clinica {
 	private static Clinica instance = null;
 	private String nombre, direccion, telefono, ciudad;
 	private StringBuilder impresion = new StringBuilder();
-
-	/**
-	 * @aggregation composite
-	 */
 	private ArrayList<IMedico> medicos;
-
-	/**
-	 * @aggregation shared
-	 */
 	private ArrayList<IPaciente> listaDeEspera;
-
-	/**
-	 * @aggregation shared
-	 */
 	ArrayList<IPaciente> listaDeAtencion;
-
-	/**
-	 * @aggregation composite
-	 */
 	private ArrayList<IHabitacion> habitaciones;
-
-	/**
-	 * @aggregation shared
-	 */
 	IPaciente salaDeEsperaPrivada = null; // de nada me sirve hacer un arraylist si solo tiene a un paciente
-
-	/**
-	 * @aggregation shared
-	 */
 	ArrayList<IPaciente> patio;
 	private int nroOrden = 1, turno = 1, nroFactura = 1;
 	static DecimalFormat df = new DecimalFormat("#.000");
 	SimpleDateFormat sdf = new SimpleDateFormat("EEEEE dd 'de' MMMMMMMMM 'de' yyyy");
-
-	/**
-	 * @aggregation shared
-	 */
 	private ArrayList<IPaciente> hPacientes;
-	/**
-	 * @aggregation shared
-	 */
 	private ArrayList<LineaFactura> lineasFacturas;
 	private ArrayList<LineaFactura> lineasReporte;
 
@@ -287,7 +256,6 @@ public class Clinica {
 			turno++;
 		}
 		return rta;
-
 	}
 
 	/**

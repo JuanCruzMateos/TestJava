@@ -33,7 +33,7 @@ public class AgregarPrestacionesTest {
 			Clinica.getInstance().Prestaciones(p, ClinicaPacMed.m, 1, ClinicaPacMed.h);
 			Assert.assertFalse(p.isFacturo());
 			Assert.assertTrue("Deberia estar el reporte", Clinica.getInstance().getLineasReporte().contains(f));
-			Assert.assertTrue("Deberia estar la factura", Clinica.getInstance().getLineasFacturas().contains(f));  
+			Assert.assertTrue("Deberia estar la factura", Clinica.getInstance().getLineasFacturas().contains(f));
 		} catch (NoHayEspacioException e) {
 			Assert.fail("La habitacion no deberia estar llena");
 		} catch (NoFueLlamadoException e) {
@@ -78,7 +78,7 @@ public class AgregarPrestacionesTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		pacientes.add(p1);
 		pacientes.add(p2);
 		pacientes.add(p3);
@@ -86,7 +86,7 @@ public class AgregarPrestacionesTest {
 		pacientes.add(p5);
 		pacientes.add(p6);
 		pacientes.add(p7);
-		
+
 		Clinica.getInstance().setListaDeAtencion(pacientes);
 		try {
 			Clinica.getInstance().Prestaciones(p1, ClinicaPacMed.m, 1, h);
