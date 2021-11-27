@@ -38,7 +38,7 @@ public class GuiTestEliminaDatosConDatos {
 	 MiOptionPane op = new MiOptionPane();
 	 Ventana vista = new Ventana();
 	 String archivoPersistencia="ClinicaConDatosCpy.bin";
-	
+	 
 	
 	 
 	 public GuiTestEliminaDatosConDatos()
@@ -54,11 +54,10 @@ public class GuiTestEliminaDatosConDatos {
 	
 	@Before
     public void setUp() throws Exception
-    {
-			
-		controlador = new ControladorMock(vista, "ClinicaConDatos.bin", archivoPersistencia);		
-		
-        controlador.setOptionpane(op);
+    {		
+
+		controlador = new ControladorMock(vista, "ClinicaConDatos.bin", "ClinicaConDatosCpy.bin");			
+        controlador.setOptionpane(op);        
         vista.setVisible(true);
         
     }
@@ -66,10 +65,12 @@ public class GuiTestEliminaDatosConDatos {
 	@After
     public void tearDown() throws Exception
     {
-        //Ventana ventana = (Ventana) controlador.getVentana();
-        vista.setVisible(false);
-        File myObj = new File(archivoPersistencia); 
-        myObj.delete();
+               
+		
+        File file = new File("ClinicaConDatosCpy.bin");		
+		file.delete();
+		vista.setVisible(false);
+
     }
 
 	@Test

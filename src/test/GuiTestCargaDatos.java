@@ -1,15 +1,14 @@
 package test;
 
 import java.awt.AWTException;
-import java.awt.Component;
+import java.awt.Point;
 import java.awt.Robot;
-import java.awt.TextField;
 import java.awt.event.InputEvent;
 import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JList;
-import javax.swing.JPanel;
+
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -19,20 +18,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import controlador.Controlador;
+
 import controlador.ControladorMock;
-import modulo.Clinica;
 import pacientes.IPaciente;
-import pacientes.Paciente;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-//import controlador.Controlador;
-//import modelo.ConjuntoUsuarios;
 import util.Mensajes;
-import vista.MiOptionPane;
+
 import vista.FalsoOptionPane;
 import vista.Ventana;
-import java.awt.Point;
+
 
 
 public class GuiTestCargaDatos {
@@ -41,9 +34,8 @@ public class GuiTestCargaDatos {
 	 ControladorMock controlador;
 	 FalsoOptionPane op = new FalsoOptionPane();
 	 Ventana vista = new Ventana();
-	 String archivoPersistencia="copyBin.bin";
+	 String archivoPersistencia="ClinicaVaciaCpy.bin";
 	 
-	
 	 
 	 public GuiTestCargaDatos()
     {
@@ -58,23 +50,31 @@ public class GuiTestCargaDatos {
 	
 	@Before
     public void setUp() throws Exception
-    {
+    {	
 		
-
-		controlador = new ControladorMock(vista, "ClinicaVacia.bin", "copyBin.bin");
-		
+		controlador = new ControladorMock(vista, "ClinicaVacia.bin", archivoPersistencia);		
         controlador.setOptionpane(op);
+        JList pacientes = (JList) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "ListaPacientes");
+        int numeroDeElementos = pacientes.getModel().getSize();
+        if (numeroDeElementos>0)
+        {
+        	pacientes.remove(numeroDeElementos-1);
+        	numeroDeElementos--;
+        }
+        
         vista.setVisible(true);
         
     }
 
 	@After
     public void tearDown() throws Exception
-    {
+    {       
+		File file = new File(archivoPersistencia);		
+		file.delete();
+		vista.setVisible(false);
+		
         
-        vista.setVisible(false);
-        //File myObj = new File("copyBin.bin"); 
-        //myObj.delete();
+	
     }
 
 	
@@ -191,8 +191,13 @@ public class GuiTestCargaDatos {
 		agregaUnPaciente("Pedrito Ramirez", "223 1563322", "33456888", "11", "Elm Street 666", "Springwood", "mayor");
 		agregaUnPaciente("Pedrito Ramirez", "223 1563322", "33456888", "11", "Elm Street 666", "Springwood", "mayor");		
 		Assert.assertEquals("Mensaje incorrecto, deber�a decir "+Mensajes.Error_Paciente_Repetido.getValor(), Mensajes.Error_Paciente_Repetido.getValor(), op.getMensaje());
+		
 	}
+
+
+
 		
 }
 	
 	
+
