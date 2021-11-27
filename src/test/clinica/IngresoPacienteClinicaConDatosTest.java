@@ -72,6 +72,38 @@ public class IngresoPacienteClinicaConDatosTest {
 			fail("Deberia lanzarse una excepcion de tipo PacienteRepetidoException: ya esta en el historico");
 		}
 	}
+	
+	@Test
+	public void eliminaHistoricoSinFactura() {
+		IPaciente p = this.condatos.getPacienteEnSalaPrivada();
+		try {
+			this.condatos.getClinica().eliminaHPaciente(p);
+		} catch (JugoRobinhoException e) {
+			fail("No deberia lanzarse la excepcion");
+			
+		}
+	}
+	
+	@Test
+	public void eliminaHistoricoConFactura() {
+		IPaciente p = this.condatos.getPacienteEnSalaPrivada();
+		p.setFacturo(false);
+		LineaFactura f1 = null;
+		ArrayList<LineaFactura> facturas = new ArrayList<>();
+		try {
+			f1 = new LineaFactura(new SalaTerapiaIntensiva(100), 1, p,
+					MedicoFactory.getMedico("Juan Perez", "1234567", "casa", "Mardel", "987654", 7, "Cirujano",
+							"Permanente", "Magister", 100));
+		} catch (PosgradoInvalidoException | ContratacionInvalidaException | EspecialidadInvalidaException e) {
+		}
+		facturas.add(f1);
+		this.condatos.getClinica().setLineasFacturas(facturas);
+		try {
+			this.condatos.getClinica().eliminaHPaciente(p);
+			fail("Deberia lanzarse la excepcion");
+		} catch (JugoRobinhoException e) {
+		}
+	}
 
 	/**
 	 * La unica forma es
