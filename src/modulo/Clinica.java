@@ -495,7 +495,7 @@ public class Clinica {
 
 			this.impresion.append("Importe total: " + df.format(importeTotal) + "$" + "\n");
 			this.impresion.append("\n");
-			GregorianCalendar fechaDeSolicitud = ;
+			GregorianCalendar fechaDeSolicitud = new GregorianCalendar();
 			calculoImporteAdicionales(nroFactura, fechaDeSolicitud ,listaDeInsumos, fecha, importeTotal, subTotalImpar,
 					paciente);
 			nroFactura++;
@@ -516,7 +516,7 @@ public class Clinica {
 		double importeTotal = 0;
 		double respuesta = 0;
 		double A = 0.8, B = 0.4, C = 1.5, D = 0.9;
-		int aleatorio = (int) (Math.random() * 31) + 1;
+		int aleatorio = (int) (Math.random() * 30) + 1;
 		int diaDeLaFechaDeFacturacion = fechaDeFacturacion.getTime().getDay();
 		if (numeroDeFactura <= this.nroFactura) {
 			if (fechaDeSolicitud.compareTo(fechaDeFacturacion) < 10) {
