@@ -165,30 +165,30 @@ public class ClinicaDTO implements Serializable {
 		this.lineasReporte = lineasReporte;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(ciudad, direccion, hPacientes, habitaciones, lineasFacturas, lineasReporte, listaDeAtencion,
-				listaDeEspera, medicos, nombre, nroFactura, nroOrden, patio, salaDeEsperaPrivada, telefono, turno);
-	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(ciudad, direccion, hPacientes, habitaciones, lineasFacturas, lineasReporte, listaDeAtencion,
+//				listaDeEspera, medicos, nombre, nroFactura, nroOrden, patio, salaDeEsperaPrivada, telefono, turno);
+//	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ClinicaDTO other = (ClinicaDTO) obj;
-		return Objects.equals(ciudad, other.ciudad) && Objects.equals(direccion, other.direccion)
-				&& Objects.equals(hPacientes, other.hPacientes) && Objects.equals(habitaciones, other.habitaciones)
-				&& Objects.equals(lineasFacturas, other.lineasFacturas)
-				&& Objects.equals(lineasReporte, other.lineasReporte)
-				&& Objects.equals(listaDeAtencion, other.listaDeAtencion)
-				&& Objects.equals(listaDeEspera, other.listaDeEspera) && Objects.equals(medicos, other.medicos)
-				&& Objects.equals(nombre, other.nombre) && nroFactura == other.nroFactura && nroOrden == other.nroOrden
-				&& Objects.equals(patio, other.patio) && Objects.equals(salaDeEsperaPrivada, other.salaDeEsperaPrivada)
-				&& Objects.equals(telefono, other.telefono) && turno == other.turno;
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		ClinicaDTO other = (ClinicaDTO) obj;
+//		return Objects.equals(ciudad, other.ciudad) && Objects.equals(direccion, other.direccion)
+//				&& Objects.equals(hPacientes, other.hPacientes) && Objects.equals(habitaciones, other.habitaciones)
+//				&& Objects.equals(lineasFacturas, other.lineasFacturas)
+//				&& Objects.equals(lineasReporte, other.lineasReporte)
+//				&& Objects.equals(listaDeAtencion, other.listaDeAtencion)
+//				&& Objects.equals(listaDeEspera, other.listaDeEspera) && Objects.equals(medicos, other.medicos)
+//				&& Objects.equals(nombre, other.nombre) && nroFactura == other.nroFactura && nroOrden == other.nroOrden
+//				&& Objects.equals(patio, other.patio) && Objects.equals(salaDeEsperaPrivada, other.salaDeEsperaPrivada)
+//				&& Objects.equals(telefono, other.telefono) && turno == other.turno;
+//	}
 
 }

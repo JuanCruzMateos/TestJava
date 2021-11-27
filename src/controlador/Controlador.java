@@ -2,6 +2,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 
@@ -158,7 +159,7 @@ public class Controlador implements ActionListener
 				Clinica.getInstance().ingresoPaciente(paciente);
 				this.vista.actualizaAgregaListaPacientes(Clinica.getInstance().getIteratorHPacientes());
 			} catch (PacienteRepetidoException pre) {
-				this.optionpane.ShowMessage(null, Mensajes.Error_Paciente_Repetido.getValor());
+				this.optionpane.ShowMessage(null, Mensajes.Error_Paciente_Repetido.getValor());				
 			} catch (PacienteYaIngresadoException pi) {
 				this.optionpane.ShowMessage(null, Mensajes.Error_Paciente_Ya_Ingresado.getValor());
 			} catch (TipoPacienteInvalidoException tpie) {
