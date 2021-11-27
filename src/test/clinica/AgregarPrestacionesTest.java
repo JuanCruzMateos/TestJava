@@ -117,7 +117,7 @@ public class AgregarPrestacionesTest {
 		IPaciente p2 = null;
 		ArrayList<IPaciente> pacientes = new ArrayList<>();
 		try {
-			p2 = PacienteFactory.getPaciente("999", "Juanse", "155111111", "Mitre 1234", "Mar del Plata", 1, "Mayor");
+			p2 = PacienteFactory.getPaciente("999", "Juanse", "0", "A", "Mardel", 2, "Joven");
 		} catch (TipoPacienteInvalidoException e1) {
 		}
 		pacientes.add(p1);
@@ -126,20 +126,23 @@ public class AgregarPrestacionesTest {
 		p2.setFacturo(false);
 		Clinica.getInstance().setListaDeAtencion(pacientes);
 		LineaFactura f1 = new LineaFactura(ClinicaPacMed.h, 1, p1, ClinicaPacMed.m);
-		LineaFactura f2 = new LineaFactura(ClinicaPacMed.h, 1, p2, ClinicaPacMed.m);
+		LineaFactura f2 = new LineaFactura(ClinicaPacMed.h, 2, p2, ClinicaPacMed.m);
 		ArrayList<LineaFactura> fs = new ArrayList<>();
 		fs.add(f1);
 		fs.add(f2);
 		Clinica.getInstance().setLineasFacturas(fs);
 
 		Clinica.getInstance().eliminaListaAtencion(p2);
+		fs = Clinica.getInstance().getLineasFacturas();
 		p2.setFacturo(true);
 		Clinica.getInstance().eliminaLineasPaciente(p2);
 
+		fs = Clinica.getInstance().getLineasFacturas();
+		
 		Iterator<LineaFactura> it = Clinica.getInstance().getLineasFacturas().iterator();
 
 		while (it.hasNext()) {
-			if (it.next().getPaciente().equals(p1))
+			if (it.next().getPaciente().equals(p2))
 				Assert.fail("No deberia haber facturas de un paciente eliminado");
 		}
 	}
