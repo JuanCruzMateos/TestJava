@@ -23,6 +23,7 @@ public class EscenarioClinicaConDatos {
 	private final Clinica clinica = Clinica.getInstance();
 	private IPaciente pacienteEnSalaPrivada;
 	private IPaciente pacienteEnPatio;
+	private IPaciente primerPaciente;
 
 	public void setUp() {
 		this.clinica.setMedicos(new ArrayList<IMedico>());
@@ -38,6 +39,7 @@ public class EscenarioClinicaConDatos {
 		try {
 			IPaciente p1 = PacienteFactory.getPaciente("11111111", "Carlos Perez", "155111111", "Mitre 1234",
 					"Mar del Plata", 1, "Mayor");
+			this.primerPaciente = p1;
 			IPaciente p2 = PacienteFactory.getPaciente("22222222", "Maria Perez", "155222222", "Paso 1474",
 					"Mar del Plata", 2, "Nino");
 			IPaciente p3 = PacienteFactory.getPaciente("33333333", "Marcos Lopez", "155333333", "Falucho 2334",

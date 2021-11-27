@@ -18,7 +18,7 @@ import pacientes.LineaFactura;
 import pacientes.PacienteFactory;
 import test.escenarios.ClinicaPacMed;
 
-public class AgregarPrestacionesTest {
+public class PrestacionesTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -145,5 +145,23 @@ public class AgregarPrestacionesTest {
 			if (it.next().getPaciente().equals(p2))
 				Assert.fail("No deberia haber facturas de un paciente eliminado");
 		}
+	}
+	
+	@Test
+	public void testCuentaOcurrencia() {
+		IPaciente p1 = ClinicaPacMed.pL;
+		IPaciente p2 = null;
+		ArrayList<IPaciente> pacientes = new ArrayList<>();
+		pacientes.add(p1);
+		p1.setFacturo(false);
+		Clinica.getInstance().setListaDeAtencion(pacientes);
+		LineaFactura f1 = new LineaFactura(ClinicaPacMed.h, 1, p1, ClinicaPacMed.m);
+		LineaFactura f2 = new LineaFactura(ClinicaPacMed.h, 2, p1, ClinicaPacMed.m);
+		ArrayList<LineaFactura> fs = new ArrayList<>();
+		fs.add(f1);
+		fs.add(f2);
+		Clinica.getInstance().setLineasFacturas(fs);
+		int cant = Clinica.getInstance().retornaOcurrencias(ClinicaPacMed.pL, ClinicaPacMed.m);
+		Assert.assertEquals("La cantida de ocurrencias no se calculan correctamente", cant, 2);
 	}
 }

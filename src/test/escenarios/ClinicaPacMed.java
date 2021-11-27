@@ -41,7 +41,6 @@ public class ClinicaPacMed {
 			Clinica.getInstance().sethPacientes(pacientesNL);
 			Clinica.getInstance().setHabitaciones(habitaciones);
 		} catch (PosgradoInvalidoException | ContratacionInvalidaException | EspecialidadInvalidaException e) {
-
 		} catch (TipoPacienteInvalidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

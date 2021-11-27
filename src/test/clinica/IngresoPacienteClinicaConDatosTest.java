@@ -2,10 +2,13 @@ package test.clinica;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.JugoRobinhoException;
+import excepciones.NoHayPacienteEsperandoException;
 import excepciones.PacienteRepetidoException;
 import excepciones.PacienteYaIngresadoException;
 import excepciones.TipoPacienteInvalidoException;
@@ -116,5 +119,62 @@ public class IngresoPacienteClinicaConDatosTest {
 		} catch (PacienteYaIngresadoException e) {
 			fail("Deberia agregar al paciente que ya existe en el historico en la lista de espera");
 		}
+	}
+	
+	@Test
+	public void agregaPacienteHistoricoExitoso() {
+		IPaciente p = null;
+		try {
+			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
+					"Mar del Plata", 9, "Joven");
+		} catch (TipoPacienteInvalidoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		try {
+			this.condatos.getClinica().agregaHistorico(p);
+		} catch (PacienteRepetidoException e) {
+			fail("No deberia saltar una excepcion");
+		}
+		assertTrue("Deberia contener el paciente historico", this.condatos.getClinica().gethPacientes().contains(p));
+	}
+	
+	@Test
+	public void agregaPacienteHistoricoRepetido() {
+		IPaciente p = null;
+		try {
+			p = PacienteFactory.getPaciente("99999999", "Carolina Dominguez", "155999999", "Falucho 7834",
+					"Mar del Plata", 9, "Joven");
+		} catch (TipoPacienteInvalidoException e) {
+			fail("No deberia arrojar excepcion");
+		}
+		try {
+			this.condatos.getClinica().agregaHistorico(p);
+			this.condatos.getClinica().agregaHistorico(p);
+			fail("Deberia saltar una excepcion");
+		} catch (PacienteRepetidoException e) {
+		}
+		
+	}
+	
+	@Test
+	public void llamarPacienteExitoso() {
+		IPaciente p = null;
+		ArrayList<IPaciente> pacientes = new ArrayList<>();
+		p = this.condatos.getPacienteEnPatio();
+		p.setNroTurno(1);
+		pacientes.add(p);
+		this.condatos.getClinica().setListaDeEspera(pacientes);
+		try {
+			 this.condatos.getClinica().llamarPaciente();
+		} catch (NoHayPacienteEsperandoException e) {
+			fail("No deberia lanzar una excepcion");
+		}
+		assertFalse("No deberia estar en la lista de espera", this.condatos.getClinica().getListaDeEspera().contains(p));
+		assertTrue("Deberia estar en la lista de atencion", this.condatos.getClinica().getListaDeAtencion().contains(p));
+	}
+	
+	@Test
+	public void agregarListaEsperaExitoso() {
+		
 	}
 }
