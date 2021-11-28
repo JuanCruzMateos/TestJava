@@ -310,7 +310,7 @@ public class GuiTestEliminaDatosConDatos {
             Assert.assertTrue("Debia saltar la excepcion y no lo hizo", false);
         } catch (IndexOutOfBoundsException e)  {
         	
-        	Assert.assertTrue("Siempre deberia sltar la excepcion al intentar borrar mas de la cantidad disponible", true);
+        	Assert.assertTrue("Siempre deberia saltar la excepcion al intentar borrar mas de la cantidad disponible", true);
         }
         
           
