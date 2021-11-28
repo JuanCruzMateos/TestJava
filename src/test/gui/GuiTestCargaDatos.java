@@ -63,10 +63,8 @@ public class GuiTestCargaDatos {
     {       
 		File file = new File(archivoPersistencia);		
 		file.delete();
-		vista.setVisible(false);
-		
-        
-	
+		vista.setVisible(false);	
+        	
     }
 
 	
@@ -177,7 +175,56 @@ public class GuiTestCargaDatos {
 		}
 			
 	}
+	
+	@Test
+	public void presionarAgregarSinSeleccionarPacienteOMedico()
+	{
+		JButton botonAgregar = (JButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "btnAgregar");
+		
+		// presiono agregar sin elegir si es un medico o un paciente
+		TestUtils.clickComponent(botonAgregar, robot);
+		robot.delay(1000);
+		Assert.assertEquals("Mensaje incorrecto, deberia decir "+Mensajes.Seleccione_MedicoOPaciente.getValor(), Mensajes.Seleccione_MedicoOPaciente.getValor(), op.getMensaje());
+		
+	}
+	
+	@Test
+	public void agregarPacienteSinElegirRangoEtario()
+	{
+		JButton botonAgregar = (JButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "btnAgregar");
+		JRadioButton radioBTNPaciente = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNPaciente");
+		
+		// hago click en el radio button de paciente
+		TestUtils.clickComponent(radioBTNPaciente, robot);
+		robot.delay(200);
+		// presiono el boton agregar sin haber seleccionado rango etario
+        TestUtils.clickComponent(botonAgregar, robot);
+        robot.delay(1000);
+        Assert.assertEquals("Mensaje incorrecto, deberia decir "+Mensajes.Error_Seleccionar_RanroEtario.getValor(), Mensajes.Error_Seleccionar_RanroEtario.getValor(), op.getMensaje());        
+        
+	}
 
+	@Test
+	public void agregarPacienteSinPonerDatos()
+	{
+		JButton botonAgregar = (JButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "btnAgregar");
+		JRadioButton radioBTNPaciente = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNPaciente");
+		JRadioButton radioBTNJoven = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNJoven");
+        
+        
+		// hago click en el radio button de paciente
+		TestUtils.clickComponent(radioBTNPaciente, robot);
+		robot.delay(200);
+		// presiono el boton radioBTNJoven
+        TestUtils.clickComponent(radioBTNJoven, robot);
+        robot.delay(200);
+        // presiono el boton agregar sin seleccionar ningun dato
+        TestUtils.clickComponent(botonAgregar, robot);
+        robot.delay(1000);
+        
+        Assert.assertEquals("Mensaje incorrecto, deberia decir "+Mensajes.Error_Numero_HistoriaClinica.getValor(), Mensajes.Error_Numero_HistoriaClinica.getValor(), op.getMensaje());        
+        
+	}
 
 
 		
