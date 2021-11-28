@@ -1,4 +1,4 @@
-package test;
+package test.gui;
 
 import java.awt.AWTException;
 import java.awt.Point;

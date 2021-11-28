@@ -13,16 +13,16 @@ public class TestHabPrivada {
 	double costoHabitacion;
 	HabPrivada habitacion;
 	IPaciente paciente;
-	EscenarioHabitacionConPaciente escenarioConPaciente;
-	EscenarioHabitacionSinPaciente escenarioSinPaciente;
+	EscenarioHabitacionConPaciente escenarioConPaciente = new EscenarioHabitacionConPaciente();
+	EscenarioHabitacionSinPaciente escenarioSinPaciente = new EscenarioHabitacionSinPaciente();
 
 	@Before
 	public void setUp() throws Exception {
 		costoHabitacion = 100;
 		habitacion = new HabPrivada(costoHabitacion);
 		paciente = new Mayor("23", "Hernan H", "223100", "Paso 12", "Mar del Plata", 1);
-		escenarioConPaciente = new EscenarioHabitacionConPaciente(habitacion, paciente);
-		escenarioSinPaciente = new EscenarioHabitacionSinPaciente(habitacion);
+		escenarioConPaciente.setUp(habitacion, paciente);
+		escenarioSinPaciente.setUp(habitacion);
 	}
 
 	@Test

@@ -6,11 +6,9 @@ import pacientes.IPaciente;
 public class EscenarioHabitacionConPaciente {
 	private IHabitacion habitacion;
 
-	public EscenarioHabitacionConPaciente(IHabitacion habitacion, IPaciente paciente) {
-		super();
+	public void setUp(IHabitacion habitacion, IPaciente paciente) {
 		this.habitacion = habitacion;
 		this.habitacion.agregaPaciente(paciente);
-
 	}
 
 	public IHabitacion getHabitacion() {

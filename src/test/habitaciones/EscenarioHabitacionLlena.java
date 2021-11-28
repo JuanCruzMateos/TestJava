@@ -1,15 +1,24 @@
 package test.habitaciones;
 
+import excepciones.TipoPacienteInvalidoException;
 import habitaciones.IHabitacion;
+import pacientes.IPaciente;
 import pacientes.Mayor;
+import pacientes.PacienteFactory;
 
 public class EscenarioHabitacionLlena {
 	private IHabitacion habitacion;
+	private IPaciente paciente;
 
-	public EscenarioHabitacionLlena(IHabitacion habitacion) {
-		super();
+	public void setUp(IHabitacion habitacion) {
 		this.habitacion = habitacion;
-		this.habitacion.agregaPaciente(new Mayor("23", "Hernan H", "223100", "Paso 12", "Mar del Plata", 18));
+		try {
+			this.paciente = PacienteFactory.getPaciente("23", "Hernan H", "223100", "Paso 12", "Mar del Plata", 18,
+					"Mayor");
+		} catch (TipoPacienteInvalidoException e) {
+			//
+		}
+		this.habitacion.agregaPaciente(this.paciente);
 		this.habitacion.agregaPaciente(new Mayor("24", "Pablo H", "223101", "Paso 13", "Mar del Plata", 17));
 		this.habitacion.agregaPaciente(new Mayor("25", "Mateo H", "223102", "Paso 14", "Mar del Plata", 16));
 		this.habitacion.agregaPaciente(new Mayor("26", "Sergio H", "223103", "Paso 15", "Mar del Plata", 15));
@@ -21,5 +30,9 @@ public class EscenarioHabitacionLlena {
 
 	public IHabitacion getHabitacion() {
 		return habitacion;
+	}
+
+	public IPaciente getPaciente() {
+		return paciente;
 	}
 }
