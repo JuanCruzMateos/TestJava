@@ -69,7 +69,6 @@ public class MedicoFactory {
 						contratacion);
 		}
 		return respuesta;
-
 	}
 
 }
