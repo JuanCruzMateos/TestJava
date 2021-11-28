@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import habitaciones.HabCompartida;
 import habitaciones.SalaTerapiaIntensiva;
 import pacientes.Joven;
 

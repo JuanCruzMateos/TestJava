@@ -6,10 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.TipoPacienteInvalidoException;
-import habitaciones.HabCompartida;
 import habitaciones.HabCompartidaComun;
 import pacientes.IPaciente;
-import pacientes.Joven;
 import pacientes.PacienteFactory;
 
 public class TestHabCompartidaComun {
