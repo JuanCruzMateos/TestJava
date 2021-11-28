@@ -19,12 +19,12 @@ public class ClinicaConMedicos {
 			m = MedicoFactory.getMedico("Juan Perez", "1", "casa", "Mardel", "987654", 1, "Cirujano", "Permanente",
 					"Magister", 100);
 			medicos.add(m);
-			medicos.add(MedicoFactory.getMedico("Juan Perez", "12", "casa", "Mardel", "987654", 2, "Cirujano",
-					"Permanente", "Magister", 100));
-			medicos.add(MedicoFactory.getMedico("Juan Perez", "123", "casa", "Mardel", "987654", 3, "Cirujano",
-					"Permanente", "Magister", 100));
+			medicos.add(MedicoFactory.getMedico("Juan Perez", "12", "casa", "Mardel", "987654", 2, "Pediatra",
+					"Residente", "Magister", 100));
+			medicos.add(MedicoFactory.getMedico("Juan Perez", "123", "casa", "Mardel", "987654", 3, "Clinico",
+					"Residente", "Magister", 100));
 			medicos.add(MedicoFactory.getMedico("Juan Perez", "1234", "casa", "Mardel", "987654", 4, "Cirujano",
-					"Permanente", "Magister", 100));
+					"Permanente", "Doctorado", 100));
 			Clinica.getInstance().setMedicos(medicos);
 		} catch (PosgradoInvalidoException | ContratacionInvalidaException | EspecialidadInvalidaException e) {
 

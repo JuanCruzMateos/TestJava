@@ -1,30 +1,25 @@
 package test.habitaciones;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import habitaciones.HabCompartida;
 import habitaciones.SalaTerapiaIntensiva;
-import pacientes.IPaciente;
 import pacientes.Joven;
 
 public class TestSalaTerapiaIntensiva {
-
 	double costoHabitacion;
 	HabCompartida habitacion;
-	IPaciente paciente;
-	EscenarioHabitacionSinPaciente escenarioSinPaciente;
-	EscenarioHabitacionLlena escenarioLleno;
+	EscenarioHabitacionSinPaciente escenarioSinPaciente = new EscenarioHabitacionSinPaciente();
+	EscenarioHabitacionLlena escenarioLleno = new EscenarioHabitacionLlena();
 
 	@Before
 	public void setUp() throws Exception {
 		costoHabitacion = 10;
 		habitacion = new SalaTerapiaIntensiva(costoHabitacion);
-		escenarioSinPaciente = new EscenarioHabitacionSinPaciente(habitacion);
-		escenarioLleno = new EscenarioHabitacionLlena(habitacion);
+		escenarioSinPaciente.setUp(habitacion);
+		escenarioLleno.setUp(habitacion);
 	}
 
 	@Test
@@ -51,16 +46,16 @@ public class TestSalaTerapiaIntensiva {
 
 	@Test
 	public void testEliminarPacienteExitoso() {
-		escenarioLleno.getHabitacion().eliminaPaciente(paciente);
+		escenarioLleno.getHabitacion().eliminaPaciente(escenarioLleno.getPaciente());
 		Assert.assertEquals("Se debe haber eliminado el paciente de la habitacion privada", null,
-				paciente.getHabitacion());
+				escenarioLleno.getPaciente());
 	}
 
 	@Test
 	public void testEliminarPacienteErroneo() {
-		escenarioSinPaciente.getHabitacion().eliminaPaciente(paciente);
+		escenarioSinPaciente.getHabitacion().eliminaPaciente(escenarioLleno.getPaciente());
 		Assert.assertEquals("No se elimina ningun paciente si la habitacion privada esta vacia", null,
-				paciente.getHabitacion());
+				escenarioLleno.getPaciente());
 	}
 
 }

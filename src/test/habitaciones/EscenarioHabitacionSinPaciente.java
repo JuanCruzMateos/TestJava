@@ -5,7 +5,7 @@ import habitaciones.IHabitacion;
 public class EscenarioHabitacionSinPaciente {
 	private IHabitacion habitacion;
 
-	public EscenarioHabitacionSinPaciente(IHabitacion habitacion) {
+	public void setUp(IHabitacion habitacion) {
 		this.habitacion = habitacion;
 
 	}
