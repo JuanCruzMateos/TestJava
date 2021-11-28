@@ -11,11 +11,8 @@ import test.pacientes.AllTestsPacientes;
 import test.persistencia.PersistenciaTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ AllTestsClinica.class, 
-	AllTestsMedicos.class, 
-	AllTestsHabitaciones.class, 
-	AllTestsPacientes.class, 
-	PersistenciaTest.class })
+@SuiteClasses({ AllTestsClinica.class, AllTestsMedicos.class, AllTestsHabitaciones.class, AllTestsPacientes.class,
+		PersistenciaTest.class })
 public class AllTests {
 
 }
