@@ -81,7 +81,7 @@ public class GuiTestCargaDatos {
         JRadioButton radioBTNPaciente = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNPaciente");
         JRadioButton radioBTNJoven = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNJoven");
         JRadioButton radioBTNMayor = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNMayor");
-        JRadioButton radioBTNNiño = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNNiño");
+        JRadioButton radioBTNNiÃ±o = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNNiï¿½o");
         JTextField txtFieldNombreAp  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldNombreAp");
         JTextField txtFieldTelefono  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldTelefono");
         JTextField txtFieldHistoriamatricula  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldHistoriamatricula");
@@ -127,7 +127,7 @@ public class GuiTestCargaDatos {
         else if (rangoEtario.equalsIgnoreCase("mayor"))
         	TestUtils.clickComponent(radioBTNMayor, robot);
         else if (rangoEtario.equalsIgnoreCase("niÃ±o"))
-        	TestUtils.clickComponent(radioBTNNiño, robot);
+        	TestUtils.clickComponent(radioBTNNiÃ±o, robot);
         
         robot.delay(250);
         // presiono el boton agregar

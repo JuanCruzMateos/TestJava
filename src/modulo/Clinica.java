@@ -621,15 +621,15 @@ public class Clinica {
 			PriorityQueue<IPaciente> ordenaPacientes) throws ReporteInvalidoException {
 		double auxHonorario = medico.calculaHonorario();
 		GregorianCalendar auxFecha;
-		int auxCont = 0, tamaño = ordenaPacientes.size();
-		if (tamaño == 0)
+		int auxCont = 0, tamaÃ±o = ordenaPacientes.size();
+		if (tamaÃ±o == 0)
 			throw new ReporteInvalidoException();
 		this.impresion.append("Medico: " + medico.getNombre() + "\n");
 		this.impresion
 				.append("Fecha Consulta                     Nombre Paciente         Honorario de Consulta" + "\n");
 		this.impresion
 				.append("********************************************************************************" + "\n");
-		for (int i = 0; i < tamaño; i++) {
+		for (int i = 0; i < tamaÃ±o; i++) {
 			IPaciente pacienteAct = ordenaPacientes.poll();
 			if (pacienteAct.getFechaEgreso() != null) {
 				auxFecha = pacienteAct.getFechaEgreso();
