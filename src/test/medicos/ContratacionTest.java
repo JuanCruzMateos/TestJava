@@ -12,12 +12,12 @@ import medicos.PlantelPermanente;
 import medicos.Residente;
 
 public class ContratacionTest {
-	
+
 	IMedico c;
 
 	@Before
 	public void setUp() {
-		c = new Cirujano("Juan Perez", "123456","casa", "Mardel", "987654", 1, 100);
+		c = new Cirujano("Juan Perez", "123456", "casa", "Mardel", "987654", 1, 100);
 		c = new Doctorado(c);
 	}
 
@@ -37,9 +37,9 @@ public class ContratacionTest {
 		Assert.assertEquals("La ciudad no es la designada", "Mardel", ciudad);
 		Assert.assertEquals("El telefono no es el designado", "987654", telefono);
 		Assert.assertEquals("El sueldo no es el designado", 1, nro);
-		Assert.assertEquals("El nombre no es el designado", 100 ,honorario, 0.01);
+		Assert.assertEquals("El nombre no es el designado", 100, honorario, 0.01);
 	}
-	
+
 	@Test
 	public void testCreacionResidente() {
 		IMedico m = new Residente(c);
@@ -56,20 +56,20 @@ public class ContratacionTest {
 		Assert.assertEquals("La ciudad no es la designada", "Mardel", ciudad);
 		Assert.assertEquals("El telefono no es el designado", "987654", telefono);
 		Assert.assertEquals("El sueldo no es el designado", 1, nro);
-		Assert.assertEquals("El nombre no es el designado", 100 ,honorario, 0.01);
+		Assert.assertEquals("El nombre no es el designado", 100, honorario, 0.01);
 	}
 
 	@Test
 	public void testCalculoHonorarioPermanente() {
 		IMedico m = new PlantelPermanente(c);
 		double sueldo = m.calculaHonorario();
-		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100*1.1*1.1*1.1, 0.01);
+		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100 * 1.1 * 1.1 * 1.1, 0.01);
 	}
-	
+
 	@Test
 	public void testCalculoHonorarioResidente() {
 		IMedico m = new Residente(c);
 		double sueldo = m.calculaHonorario();
-		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100*1.1*1.1*1.05, 0.01);
+		Assert.assertEquals("El honorario calculado no es el esperado", sueldo, 100 * 1.1 * 1.1 * 1.05, 0.01);
 	}
 }

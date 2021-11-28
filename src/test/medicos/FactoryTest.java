@@ -43,7 +43,7 @@ public class FactoryTest {
 		} catch (ContratacionInvalidaException e) {
 			Assert.fail("Deberia lanzarse la excepcion de la especialidad");
 		} catch (EspecialidadInvalidaException e) {
-			
+
 		}
 	}
 
@@ -66,8 +66,8 @@ public class FactoryTest {
 	public void testGradoIncorrecto() {
 		IMedico m = null;
 		try {
-			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano",
-					"Permanente", "Estudiante", 100);
+			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano", "Permanente",
+					"Estudiante", 100);
 			Assert.fail("El medico no deberia ser creado");
 		} catch (PosgradoInvalidoException e) {
 
@@ -77,20 +77,22 @@ public class FactoryTest {
 			Assert.fail("Deberia lanzarse la excepcion del grado");
 		}
 	}
-	
+
 	@Test
 	public void testEspecialidadNull() {
 		IMedico m = null;
 		try {
-			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, null,
-					"Permanente", "Doctorado", 100);
+			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, null, "Permanente",
+					"Doctorado", 100);
 			Assert.fail("El medico no deberia ser creado");
 		} catch (PosgradoInvalidoException e) {
 			Assert.fail("Deberia lanzarse la excepcion de la especialidad");
 		} catch (ContratacionInvalidaException e) {
 			Assert.fail("Deberia lanzarse la excepcion de la especialidad");
 		} catch (EspecialidadInvalidaException e) {
-			
+			//
+		} catch (Exception e) {
+			Assert.fail("Deberia lanzarse una excepcion especifica: EspecialidadInvalidaException");
 		}
 	}
 
@@ -98,14 +100,17 @@ public class FactoryTest {
 	public void testContratacionNull() {
 		IMedico m = null;
 		try {
-			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano",
-					null, "Doctorado", 100);
+			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano", null,
+					"Doctorado", 100);
 			Assert.fail("El medico no deberia ser creado");
 		} catch (PosgradoInvalidoException e) {
 			Assert.fail("Deberia lanzarse la excepcion de la contratacion");
 		} catch (ContratacionInvalidaException e) {
+			//
 		} catch (EspecialidadInvalidaException e) {
 			Assert.fail("Deberia lanzarse la excepcion de la contratacion");
+		} catch (Exception e) {
+			Assert.fail("Deberia lanzarse una excepcion especifica: ContratacionInvalidaException");
 		}
 	}
 
@@ -113,15 +118,17 @@ public class FactoryTest {
 	public void testGradoNull() {
 		IMedico m = null;
 		try {
-			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano",
-					"Permanente", null, 100);
+			m = MedicoFactory.getMedico("Juan Perez", "123456", "casa", "Mardel", "987654", 1, "Cirujano", "Permanente",
+					null, 100);
 			Assert.fail("El medico no deberia ser creado");
 		} catch (PosgradoInvalidoException e) {
-
+			//
 		} catch (ContratacionInvalidaException e) {
 			Assert.fail("Deberia lanzarse la excepcion del grado");
 		} catch (EspecialidadInvalidaException e) {
 			Assert.fail("Deberia lanzarse la excepcion del grado");
+		} catch (Exception e) {
+			Assert.fail("Deberia lanzarse una excepcion especifica: PosgradoInvalidoException");
 		}
 	}
 
