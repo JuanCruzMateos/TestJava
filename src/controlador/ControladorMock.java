@@ -39,8 +39,7 @@ public class ControladorMock extends Controlador {
 	
 	public ControladorMock(IVista vista, String nombreBinOrigen, String nombreBinDestino){
 		super();
-		this.setVista(vista);
-		
+		this.setVista(vista);	
 		
 		this.vista.setActionListener(this);
 		this.vista.pacientemedicoSeleccionado();

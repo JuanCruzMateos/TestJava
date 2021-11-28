@@ -53,15 +53,7 @@ public class GuiTestCargaDatos {
     {	
 		
 		controlador = new ControladorMock(vista, "ClinicaVacia.bin", archivoPersistencia);		
-        controlador.setOptionpane(op);
-        JList pacientes = (JList) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "ListaPacientes");
-        int numeroDeElementos = pacientes.getModel().getSize();
-        if (numeroDeElementos>0)
-        {
-        	pacientes.remove(numeroDeElementos-1);
-        	numeroDeElementos--;
-        }
-        
+        controlador.setOptionpane(op);        
         vista.setVisible(true);
         
     }
@@ -91,57 +83,45 @@ public class GuiTestCargaDatos {
         JRadioButton radioBTNPaciente = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNPaciente");
         JRadioButton radioBTNJoven = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNJoven");
         JRadioButton radioBTNMayor = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNMayor");
-        JRadioButton radioBTNNiÃ±o = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNNiï¿½o");
+        JRadioButton radioBTNNiño = (JRadioButton) TestUtils.getComponentForName((Ventana)controlador.getVentana(), "RadioBTNNiño");
         JTextField txtFieldNombreAp  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldNombreAp");
         JTextField txtFieldTelefono  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldTelefono");
         JTextField txtFieldHistoriamatricula  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldHistoriamatricula");
         JTextField txtFieldDni  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldDni");
         JTextField txtFieldDomicilio  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldDomicilio");
         JTextField txtFieldCiudad  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldCiudad");
-        //JTextField txtFieldHonorarioBase  = (JTextField)TestUtils.getComponentForName((Ventana)controlador.getVentana(), "txtFieldHonorarioBase");
-
-        // borraJTextField(JTextField jtextfield, Robot robot)
-        // tipeaTexto(String texto, Robot robot)
-        //clickComponent(Component component, Robot robot)
-        //robot.delay(250);
+        
         // Primero tengo que seleccionar el radioButton
-        TestUtils.clickComponent(radioBTNPaciente, robot);
-        //robot.delay(250);
+        TestUtils.clickComponent(radioBTNPaciente, robot);        
         
         // Nombre y Apellido
         TestUtils.clickComponent(txtFieldNombreAp, robot);
-        TestUtils.borraJTextField(txtFieldNombreAp, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldNombreAp, robot);        
         TestUtils.tipeaTexto(nombre, robot);
         
         // Telefono
         TestUtils.clickComponent(txtFieldTelefono, robot);
-        TestUtils.borraJTextField(txtFieldTelefono, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldTelefono, robot);        
         TestUtils.tipeaTexto(telefono, robot);
         
         // Historia clinica
         TestUtils.clickComponent(txtFieldHistoriamatricula, robot);
-        TestUtils.borraJTextField(txtFieldHistoriamatricula, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldHistoriamatricula, robot);        
         TestUtils.tipeaTexto(historiaClinica, robot);
         
         // DNI
         TestUtils.clickComponent(txtFieldDni, robot);
-        TestUtils.borraJTextField(txtFieldDni, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldDni, robot);        
         TestUtils.tipeaTexto(dni, robot);
      
         // Domicilio
         TestUtils.clickComponent(txtFieldDomicilio, robot);
-        TestUtils.borraJTextField(txtFieldDomicilio, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldDomicilio, robot);        
         TestUtils.tipeaTexto(domicilio, robot);
         
         // Ciudad
         TestUtils.clickComponent(txtFieldCiudad, robot);
-        TestUtils.borraJTextField(txtFieldCiudad, robot);
-        //robot.delay(250);
+        TestUtils.borraJTextField(txtFieldCiudad, robot);        
         TestUtils.tipeaTexto(ciudad, robot);
         
         if (rangoEtario.equalsIgnoreCase("joven"))
@@ -149,7 +129,7 @@ public class GuiTestCargaDatos {
         else if (rangoEtario.equalsIgnoreCase("mayor"))
         	TestUtils.clickComponent(radioBTNMayor, robot);
         else if (rangoEtario.equalsIgnoreCase("niÃ±o"))
-        	TestUtils.clickComponent(radioBTNNiÃ±o, robot);
+        	TestUtils.clickComponent(radioBTNNiño, robot);
         
         robot.delay(250);
         // presiono el boton agregar
@@ -190,8 +170,12 @@ public class GuiTestCargaDatos {
 	{
 		agregaUnPaciente("Pedrito Ramirez", "223 1563322", "33456888", "11", "Elm Street 666", "Springwood", "mayor");
 		agregaUnPaciente("Pedrito Ramirez", "223 1563322", "33456888", "11", "Elm Street 666", "Springwood", "mayor");		
-		Assert.assertEquals("Mensaje incorrecto, deberï¿½a decir "+Mensajes.Error_Paciente_Repetido.getValor(), Mensajes.Error_Paciente_Repetido.getValor(), op.getMensaje());
-		
+		Assert.assertEquals("Mensaje incorrecto, deberia decir "+Mensajes.Error_Paciente_Repetido.getValor(), Mensajes.Error_Paciente_Repetido.getValor(), op.getMensaje());
+		if (Mensajes.Error_Paciente_Repetido.getValor() == op.getMensaje())
+		{
+			System.out.println("Ignorar ingresado, excepcion por paciente repetido");
+		}
+			
 	}
 
 
