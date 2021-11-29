@@ -73,6 +73,27 @@ public class IngresoPacienteClinicaConDatosTest {
 		}
 	}
 	
+	/**
+	 * La unica forma es
+	 */
+	@Test
+	public void ingresoPacienteYaIngresadoTest() { // ingresado en lista de espera
+		try {
+			// borro el paciente del historico, pero no de la lista de espera
+			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPacienteEnSalaPrivada());
+			// lo ingreso
+			this.condatos.getClinica().ingresoPaciente(this.condatos.getPacienteEnSalaPrivada());
+			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
+		} catch (PacienteRepetidoException e) {
+			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
+		} catch (PacienteYaIngresadoException e) {
+			// el paciente debe no estar en el historico pero si en la lista de espera
+			// la unica forma es meterlo en el ArrayList puenteando al metodo ingreso
+		} catch (JugoRobinhoException e) {
+			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
+		}
+	}
+	
 	@Test
 	public void eliminaHistoricoSinFactura() {
 		IPaciente p = this.condatos.getPacienteEnSalaPrivada();
@@ -102,27 +123,6 @@ public class IngresoPacienteClinicaConDatosTest {
 			this.condatos.getClinica().eliminaHPaciente(p);
 			fail("Deberia lanzarse la excepcion");
 		} catch (JugoRobinhoException e) {
-		}
-	}
-
-	/**
-	 * La unica forma es
-	 */
-	@Test
-	public void ingresoPacienteYaIngresadoTest() { // ingresado en lista de espera
-		try {
-			// borro el paciente del historico, pero no de la lista de espera
-			this.condatos.getClinica().eliminaHPaciente(this.condatos.getPacienteEnSalaPrivada());
-			// lo ingreso
-			this.condatos.getClinica().ingresoPaciente(this.condatos.getPacienteEnSalaPrivada());
-			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
-		} catch (PacienteRepetidoException e) {
-			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
-		} catch (PacienteYaIngresadoException e) {
-			// el paciente debe no estar en el historico pero si en la lista de espera
-			// la unica forma es meterlo en el ArrayList puenteando al metodo ingreso
-		} catch (JugoRobinhoException e) {
-			fail("Deberia lanzarse una excepcion de tipo PacienteYaIngresadoException");
 		}
 	}
 
