@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import pacientes.Joven;
 import pacientes.Mayor;
-import pacientes.Niño;
+import pacientes.NiÃ±o;
 
 public class MayorTest {
 
@@ -23,9 +23,9 @@ public class MayorTest {
 	}
 
 	@Test
-	public void testBeatsNiño() {
+	public void testBeatsNiÃ±o() {
 		Mayor mayor = new Mayor("38443617", "Juan Cruz Mateos", "155123456", "Calle Falsa 123", "Mar del Plata", 3);
-		Niño otro = new Niño("42123456", "Maria Perez", "155457812", "Paso 1478", "Mar del Plata", 28);
+		NiÃ±o otro = new NiÃ±o("42123456", "Maria Perez", "155457812", "Paso 1478", "Mar del Plata", 28);
 		assertTrue("Deberia quedar el mayor", mayor.beats(otro));
 	}
 

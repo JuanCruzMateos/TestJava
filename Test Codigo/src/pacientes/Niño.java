@@ -4,19 +4,19 @@ package pacientes;
  * @author Clase nino que se extiende la superclase Paciente e implementa la
  *         interfaz IPaciente
  */
-public class Niño extends Paciente {
+public class NiÃ±o extends Paciente {
 
-	public Niño(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria) {
-		super(dni, nomAp, telefono, domicilio, ciudad, numHistoria, "Niño");
+	public NiÃ±o(String dni, String nomAp, String telefono, String domicilio, String ciudad, int numHistoria) {
+		super(dni, nomAp, telefono, domicilio, ciudad, numHistoria, "NiÃ±o");
 	}
 
 	@Override
 	public boolean beats(IPaciente o) {
-		return o.beatsNiño();
+		return o.beatsNiÃ±o();
 	}
 
 	@Override
-	public boolean beatsNiño() {
+	public boolean beatsNiÃ±o() {
 		return true;
 	}
 

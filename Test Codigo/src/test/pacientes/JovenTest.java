@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import pacientes.Joven;
 import pacientes.Mayor;
-import pacientes.Ni�o;
+import pacientes.Niño;
 
 public class JovenTest {
 
@@ -22,9 +22,9 @@ public class JovenTest {
 	}
 
 	@Test
-	public void testBeatsNi�o() {
+	public void testBeatsNiño() {
 		Joven joven = new Joven("38443617", "Juan Cruz Mateos", "155123456", "Calle Falsa 123", "Mar del Plata", 3);
-		Ni�o otro = new Ni�o("42123456", "Maria Perez", "155457812", "Paso 1478", "Mar del Plata", 28);
+		Niño otro = new Niño("42123456", "Maria Perez", "155457812", "Paso 1478", "Mar del Plata", 28);
 		assertFalse("Deberia quedar el niño", joven.beats(otro));
 	}
 
